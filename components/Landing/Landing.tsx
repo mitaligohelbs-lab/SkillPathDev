@@ -1,17 +1,21 @@
-import React from "react";
+import { Stack } from "@mui/material";
+
+import Feature from "./Feature";
 import Header from "./Header";
-import { Box, Stack } from "@mui/material";
 import StartPracticingButton from "./StartPracticingButton";
 
 const Landing = () => {
   return (
     <Stack
-      justifyContent="center"
+      minHeight="92vh"
+      justifyContent="space-evenly"
       alignItems="center"
-      className="min-h-screen space-y-8"
+      spacing={2}
+      p={{ xs: 2, md: 0 }}
     >
       <Header />
       <StartPracticingButton />
+      <Feature />
     </Stack>
   );
 };
