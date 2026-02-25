@@ -28,3 +28,72 @@ export const TECHNOLOGIES = [
   { id: "react", name: "React", icon: "⚛️", enabled: false },
   { id: "typescript", name: "TypeScript", icon: "🔷", enabled: false },
 ];
+
+export const JS_TOPICS = [
+  {
+    id: "closures",
+    name: "Closures",
+    icon: "🔒",
+    description: "Lexical scope, closure patterns, and memory",
+  },
+  {
+    id: "hoisting",
+    name: "Hoisting",
+    icon: "⬆️",
+    description: "Variable and function hoisting behavior",
+  },
+  {
+    id: "async",
+    name: "Async JS",
+    icon: "⏳",
+    description: "Promises, async/await, and callbacks",
+  },
+  {
+    id: "event-loop",
+    name: "Event Loop",
+    icon: "🔄",
+    description: "Call stack, task queue, and microtasks",
+  },
+  {
+    id: "scope",
+    name: "Variables & Scope",
+    icon: "📦",
+    description: "var, let, const, and scope chains",
+  },
+  {
+    id: "arrays",
+    name: "Array & Object Methods",
+    icon: "🗃️",
+    description: "map, filter, reduce, and more",
+  },
+  {
+    id: "prototypes",
+    name: "Prototypes",
+    icon: "🧬",
+    description: "Prototype chain and inheritance",
+  },
+  {
+    id: "es6",
+    name: "ES6+ Features",
+    icon: "✨",
+    description: "Destructuring, spread, modules, and more",
+  },
+];
+
+export const LEVELS = [
+  {
+    level: 1,
+    name: "Basics",
+    description: "Foundational concepts and simple problems",
+  },
+  {
+    level: 2,
+    name: "Intermediate",
+    description: "Tricky edge cases and applied patterns",
+  },
+  {
+    level: 3,
+    name: "Advanced",
+    description: "Expert-level mastery and optimization",
+  },
+];

@@ -23,12 +23,12 @@ const Header = () => {
         Level-based Interview Prep
       </Box>
       <h1
-        className={`text-4xl md:text-6xl font-bold leading-tight text-center ${jetBrainsMono.className}`}
+        className={`text-4xl md:text-6xl font-bold leading-tight text-center ${jetBrainsMono.className} pt-2`}
       >
-        Master
-        <span className="text-[#31c47f]"> JavaScript</span>
+        Level up for
+        <span className="text-[#31c47f]"> frontend</span>
         <br />
-        Interview by <br /> Interview
+        Interview
       </h1>
 
       <Box color={"#707D8F"} className="max-w-xl text-lg mx-auto text-center">
