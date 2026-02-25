@@ -2,8 +2,8 @@ import CommonHeader from "@/components/common/CommonHeader";
 
 const Header = () => (
   <CommonHeader
-    title="Select Technology"
-    description="Choose a language to begin your interview prep journey"
+    title="Select Level"
+    description="Complete each level to unlock the next"
   />
 );
 
