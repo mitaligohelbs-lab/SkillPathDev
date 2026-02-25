@@ -17,3 +17,14 @@ export const ALL_FEATURE = [
     desc: "Mixed rounds like real interviews.",
   },
 ];
+
+export const TECHNOLOGIES = [
+  {
+    id: "javascript",
+    name: "JavaScript",
+    icon: "⚡",
+    enabled: true,
+  },
+  { id: "react", name: "React", icon: "⚛️", enabled: false },
+  { id: "typescript", name: "TypeScript", icon: "🔷", enabled: false },
+];
