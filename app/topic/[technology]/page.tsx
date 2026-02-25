@@ -1,7 +1,4 @@
 import TopicSelection from "@/components/TopicSelection/TopicSelection";
 
-const page = () => {
-  return <TopicSelection />;
-};
-
+const page = () => <TopicSelection />;
 export default page;
