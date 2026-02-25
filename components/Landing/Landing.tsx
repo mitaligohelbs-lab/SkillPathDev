@@ -1,17 +1,16 @@
 import { Stack } from "@mui/material";
 
-import Feature from "./Feature";
-import Header from "./Header";
-import StartPracticingButton from "./StartPracticingButton";
-
+import Feature from "./components/Feature";
+import Header from "./components/Header";
+import StartPracticingButton from "./components/StartPracticingButton";
 const Landing = () => {
   return (
     <Stack
-      minHeight="92vh"
-      justifyContent="space-evenly"
+      justifyContent="center"
       alignItems="center"
-      spacing={2}
+      spacing={{ xs: 6, md: 3 }}
       p={{ xs: 2, md: 0 }}
+      className="min-h-screen"
     >
       <Header />
       <StartPracticingButton />

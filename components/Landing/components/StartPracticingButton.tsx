@@ -1,7 +1,11 @@
+"use client";
+
 import { Button } from "@mui/material";
 import { ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const StartPracticingButton = () => {
+  const router = useRouter();
   return (
     <Button
       variant="contained"
@@ -21,6 +25,7 @@ const StartPracticingButton = () => {
           backgroundColor: "#28a764",
         },
       }}
+      onClick={() => router.push("/select-tech")}
     >
       Start Practicing <ChevronRight />
     </Button>
