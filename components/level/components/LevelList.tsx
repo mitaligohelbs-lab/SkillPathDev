@@ -23,9 +23,7 @@ const LevelList = () => {
             key={level}
             disabled={level !== 1}
             id={level}
-            handleCardClick={() => {
-              router.push(`/mcq/${technology}/${topic}/1`);
-            }}
+            handleCardClick={() => router.push(`/mcq/${technology}/${topic}/1`)}
             borderColor="#272c34"
           >
             <Grid className="flex gap-2 justify-between items-center">
