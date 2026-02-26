@@ -1,15 +1,15 @@
 "use client";
 
 import CommonHeader from "@/components/common/CommonHeader";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 const Header = () => {
-  const pathName = usePathname();
-  const name = pathName.split("/")[2];
+  const { technology } = useParams();
+
   return (
     <CommonHeader
-      title={`Choose a ${name} Topic`}
-      description={`Select a ${name} concept to practice`}
+      title={`Choose a ${technology} Topic`}
+      description={`Select a ${technology} concept to practice`}
     />
   );
 };

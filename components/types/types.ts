@@ -15,5 +15,10 @@ export type HeaderTypes = {
 
 export type LayoutType = {
   children: React.ReactNode;
-  isCard?:boolean
+  isCard?: boolean;
+};
+
+export type MainHeaderTypes = {
+  text: string;
+  subText?: string;
 };

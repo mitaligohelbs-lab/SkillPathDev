@@ -20,7 +20,7 @@ export const ALL_FEATURE = [
 
 export const TECHNOLOGIES = [
   {
-    id: "javascript",
+    id: "javaScript",
     name: "JavaScript",
     icon: "⚡",
     enabled: true,
@@ -31,8 +31,8 @@ export const TECHNOLOGIES = [
 
 export const JS_TOPICS = [
   {
-    id: "closures",
-    name: "Closures",
+    id: "closure",
+    name: "Closure",
     icon: "🔒",
     description: "Lexical scope, closure patterns, and memory",
   },

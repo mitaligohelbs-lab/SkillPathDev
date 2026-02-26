@@ -22,7 +22,7 @@ const TechStack = () => {
             key={id}
             disabled={!enabled}
             id={id}
-            handleCardClick={() => router.push(`/topic/${name.toLowerCase()}`)}
+            handleCardClick={() => router.push(`/topic/${id}`)}
           >
             <Grid className="flex gap-2 justify-between items-center">
               <Grid className="flex gap-3">

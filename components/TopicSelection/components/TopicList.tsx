@@ -2,13 +2,12 @@
 import Card from "@/components/common/Card";
 import { JS_TOPICS } from "@/constant";
 import { Grid, Stack, Box } from "@mui/material";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const TopicList = () => {
   const router = useRouter();
-  const pathName = usePathname();
 
-  const currentLevel = pathName.split("/")[2];
+  const { technology } = useParams();
 
   return (
     <Grid
@@ -24,7 +23,7 @@ const TopicList = () => {
           <Card
             id={id}
             handleCardClick={() => {
-              router.push(`/level/${currentLevel}/${name.toLocaleLowerCase()}`);
+              router.push(`/level/${technology}/${id}`);
             }}
             borderColor="#272c34"
           >
