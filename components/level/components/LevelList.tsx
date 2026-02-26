@@ -4,8 +4,12 @@ import Card from "@/components/common/Card";
 import { LEVELS } from "@/constant";
 import { Box, Grid, Stack } from "@mui/material";
 import { Lock, Play } from "lucide-react";
+import { useParams, useRouter } from "next/navigation";
 
 const LevelList = () => {
+  const router = useRouter();
+  const { technology, topic } = useParams();
+
   return (
     <Stack
       justifyContent={"center"}
@@ -19,7 +23,9 @@ const LevelList = () => {
             key={level}
             disabled={level !== 1}
             id={level}
-            handleCardClick={() => {}}
+            handleCardClick={() => {
+              router.push(`/mcq/${technology}/${topic}/1`);
+            }}
             borderColor="#272c34"
           >
             <Grid className="flex gap-2 justify-between items-center">
