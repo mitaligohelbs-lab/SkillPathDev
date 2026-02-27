@@ -48,6 +48,7 @@ const MCQDisplay = ({
         setSubmitted={setSubmitted}
         setCurrentQuestionNumber={setCurrentQuestionNumber}
         resetOption={() => setSelectOption(null)}
+        isCorrect={isCorrect}
       />
       {submitted && (
         <div className="pt-3">

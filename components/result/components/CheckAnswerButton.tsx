@@ -1,6 +1,9 @@
 "use client";
 
 import { chckAnswerProps } from "@/components/types/mcqTypes";
+import { isSubmitted } from "@/lib/features/QuizSlice";
+import { useAppDispatch } from "@/lib/hook";
+import { useParams } from "next/navigation";
 
 const CheckAnswerButton = ({
   disabled,
@@ -8,8 +11,19 @@ const CheckAnswerButton = ({
   setSubmitted,
   setCurrentQuestionNumber,
   resetOption,
+  isCorrect,
 }: chckAnswerProps) => {
+  const { level, technology, topic } = useParams();
+  const dispatch = useAppDispatch();
   const handleNext = () => {
+    dispatch(
+      isSubmitted({
+        isCorrect,
+        level,
+        topic,
+        technology,
+      }),
+    );
     setCurrentQuestionNumber((prev) => prev + 1);
     setSubmitted(false);
     resetOption();

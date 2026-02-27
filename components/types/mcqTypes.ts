@@ -44,4 +44,5 @@ export type chckAnswerProps = {
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   setCurrentQuestionNumber: Dispatch<SetStateAction<number>>;
   resetOption: () => void;
+  isCorrect:boolean
 };
