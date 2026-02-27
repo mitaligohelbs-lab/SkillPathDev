@@ -6,13 +6,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <div className="fixed left-0 right-0 top-0 bg-[#101319] z-10">
-          <PreparationHeader />
-        </div>
-        <div className="grow overflow-y-auto">{children}</div>
-      </body>
-    </html>
+    <div className="min-h-screen flex flex-col ">
+      <div className="fixed left-0 right-0 top-0 bg-[#101319] z-10">
+        <PreparationHeader />
+      </div>
+      <div className="grow overflow-y-auto">{children}</div>
+    </div>
   );
 }

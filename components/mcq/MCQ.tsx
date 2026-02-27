@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { MCQList } from "../types/mcqTypes";
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 
+import Layout from "../common/Layout";
+import MCQDisplay from "./components/MCQDisplay";
+
 const MCQ = () => {
   const { technology, topic, level } = useParams();
 
@@ -16,7 +19,11 @@ const MCQ = () => {
   const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
 
   const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
-  const [currQuestion, setCurrQuestion] = useState<MCQList | null>(null);
+  const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+
+  const findQuestion = allQuestionData.find(
+    (_, idx) => idx === currQuestionNumber,
+  );
 
   async function fetchMCQs() {
     try {
@@ -37,13 +44,16 @@ const MCQ = () => {
     fetchMCQs();
   }, [technology, topic, level]);
 
-  useEffect(() => {
-    allQuestionData && !currQuestion
-      ? setCurrQuestion(allQuestionData[0])
-      : null;
-  }, [allQuestionData]);
-
-  return <div>Hii</div>;
+  return (
+    <Layout isCard>
+      {findQuestion && (
+        <MCQDisplay
+          question={findQuestion}
+          setCurrentQuestionNumber={setCurrentQuestionNumber}
+        />
+      )}
+    </Layout>
+  );
 };
 
 export default MCQ;
