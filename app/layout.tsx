@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/components/Header/Header";
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col">
-        <div className="fixed left-0 right-0 top-0 bg-[#101319] z-10">
+        <div className="fixed left-0 right-0 top-0 bg-[#101319] z-10 flex justify-between border-b px-6 py-4 items-center gap-3 border-[#272c3480]">
           <Header text="SkillPath" subText="Dev" />
         </div>
-        <div className="grow overflow-y-auto">{children}</div>
+        <StoreProvider>
+          <div className="grow overflow-y-auto">{children}</div>
+        </StoreProvider>
       </body>
     </html>
   );

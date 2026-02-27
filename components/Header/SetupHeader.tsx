@@ -14,7 +14,11 @@ const SetupHeader = () => {
   const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
   const headerText = currTopicName ?? currTechnologyName ?? "SkillPathDev";
 
-  return <Header text={headerText} />;
+  return (
+    <div className="flex border-b px-6 py-4 items-center gap-3 border-[#272c3480]">
+      <Header text={headerText} />
+    </div>
+  );
 };
 
 export default SetupHeader;
