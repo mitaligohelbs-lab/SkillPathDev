@@ -9,6 +9,7 @@ import { useState } from "react";
 const MCQDisplay = ({
   question,
   setCurrentQuestionNumber,
+  currQuestionNumber,
 }: MCQDisplayProps) => {
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -26,7 +27,7 @@ const MCQDisplay = ({
     <Stack>
       <Typography variant="h5">
         <pre className="p-6 rounded-xl bg-card border bg-[#15181e] border-[#272c34] font-mono text-sm  overflow-x-auto">
-          {question.question}
+          {`${currQuestionNumber}  ${question.question}`}
         </pre>
       </Typography>
       <Box pt={3} className="space-y-2">
@@ -49,6 +50,7 @@ const MCQDisplay = ({
         setCurrentQuestionNumber={setCurrentQuestionNumber}
         resetOption={() => setSelectOption(null)}
         isCorrect={isCorrect}
+        currQuestionNumber={currQuestionNumber}
       />
       {submitted && (
         <div className="pt-3">

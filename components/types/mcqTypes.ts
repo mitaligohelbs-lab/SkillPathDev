@@ -26,6 +26,7 @@ export type MCQQuestion = {
 export type MCQDisplayProps = {
   question: MCQList;
   setCurrentQuestionNumber: Dispatch<SetStateAction<number>>;
+  currQuestionNumber: number;
 };
 
 export type DisplayOptionProps = {
@@ -44,5 +45,6 @@ export type chckAnswerProps = {
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   setCurrentQuestionNumber: Dispatch<SetStateAction<number>>;
   resetOption: () => void;
-  isCorrect:boolean
+  isCorrect: boolean;
+  currQuestionNumber: number;
 };

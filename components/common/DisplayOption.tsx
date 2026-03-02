@@ -25,7 +25,7 @@ const DisplayOption = ({
         disabled && "cursor-not-allowed opacity-80",
       )}
     >
-      {text}
+      {`${isCheckAnswerBox ? "" : option + ".   "}${text}`}
     </button>
   );
 };

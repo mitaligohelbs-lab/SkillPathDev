@@ -4,7 +4,7 @@ export const quizSlice = createSlice({
   name: "quiz",
   initialState: {
     totalQuestion: 10,
-    attemp: 0,
+    attemp: 1,
     correct: 0,
     wrong: 0,
     topic: "",

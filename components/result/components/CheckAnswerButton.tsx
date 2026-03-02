@@ -3,7 +3,7 @@
 import { chckAnswerProps } from "@/components/types/mcqTypes";
 import { isSubmitted } from "@/lib/features/QuizSlice";
 import { useAppDispatch } from "@/lib/hook";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const CheckAnswerButton = ({
   disabled,
@@ -12,7 +12,9 @@ const CheckAnswerButton = ({
   setCurrentQuestionNumber,
   resetOption,
   isCorrect,
+  currQuestionNumber,
 }: chckAnswerProps) => {
+  const router = useRouter();
   const { level, technology, topic } = useParams();
   const dispatch = useAppDispatch();
   const handleNext = () => {
@@ -24,7 +26,11 @@ const CheckAnswerButton = ({
         technology,
       }),
     );
-    setCurrentQuestionNumber((prev) => prev + 1);
+    if (currQuestionNumber === 10) {
+      router.push(`/result`);
+    } else {
+      setCurrentQuestionNumber((prev) => prev + 1);
+    }
     setSubmitted(false);
     resetOption();
   };
@@ -38,7 +44,11 @@ const CheckAnswerButton = ({
         }`}
         onClick={() => (submitted ? handleNext() : setSubmitted(true))}
       >
-        {submitted ? "Next" : "Check Answer"}
+        {currQuestionNumber === 10
+          ? "Result"
+          : submitted
+            ? "Next"
+            : "Check Answer"}
       </button>
     </div>
   );

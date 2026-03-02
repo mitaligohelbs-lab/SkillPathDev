@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Header from "@/components/Header/Header";
 import StoreProvider from "./StoreProvider";
+import { ToastProvider } from "./ToastProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +22,10 @@ export default function RootLayout({
           <Header text="SkillPath" subText="Dev" />
         </div>
         <StoreProvider>
-          <div className="grow overflow-y-auto">{children}</div>
+          <div className="grow overflow-y-auto">
+            {children}
+            <ToastProvider />
+          </div>
         </StoreProvider>
       </body>
     </html>

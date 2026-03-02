@@ -1,5 +1,7 @@
+import Layout from "../common/Layout";
+
 const Result = () => {
-  return <div>Helllol</div>;
+  return <Layout>Hello</Layout>;
 };
 
 export default Result;

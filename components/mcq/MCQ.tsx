@@ -1,4 +1,4 @@
-"use client";
+  "use client";
 
 import { supabase } from "@/lib/supabase";
 import { useParams } from "next/navigation";
@@ -19,10 +19,10 @@ const MCQ = () => {
   const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
 
   const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
-  const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(0);
+  const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
 
   const findQuestion = allQuestionData.find(
-    (_, idx) => idx === currQuestionNumber,
+    (_, idx) => idx + 1 === currQuestionNumber,
   );
 
   async function fetchMCQs() {
@@ -50,6 +50,7 @@ const MCQ = () => {
         <MCQDisplay
           question={findQuestion}
           setCurrentQuestionNumber={setCurrentQuestionNumber}
+          currQuestionNumber={currQuestionNumber}
         />
       )}
     </Layout>
