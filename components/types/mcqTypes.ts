@@ -48,3 +48,9 @@ export type chckAnswerProps = {
   isCorrect: boolean;
   currQuestionNumber: number;
 };
+
+export type bookmarkProps = {
+  created_at: string;
+  id: number;
+  question_id: number;
+};

@@ -2,9 +2,11 @@
 
 import DisplayOption from "@/components/common/DisplayOption";
 import CheckAnswerButton from "@/components/result/components/CheckAnswerButton";
-import { MCQDisplayProps } from "@/components/types/mcqTypes";
+import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
+import { supabase } from "@/lib/supabase";
 import { Box, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Star, StarOff } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const MCQDisplay = ({
   question,
@@ -13,6 +15,22 @@ const MCQDisplay = ({
 }: MCQDisplayProps) => {
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [allBookmarkedData, setIsAllBookmarkedData] = useState<bookmarkProps[]>(
+    [],
+  );
+
+  const fetchAllBookmarkedQuestionId = async () => {
+    try {
+      const { data } = await supabase.from("bookmarked_questions").select("*");
+      setIsAllBookmarkedData(data ?? []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllBookmarkedQuestionId();
+  }, []);
 
   const isCorrect = question?.correct_answer === selectOption;
 
@@ -23,14 +41,45 @@ const MCQDisplay = ({
     { text: question.D, option: "D" },
   ];
 
+  const isIdExist = allBookmarkedData.some(
+    (item) => item.question_id === question.id,
+  );
+
+  const toggleBookMark = async () => {
+    if (isIdExist) {
+      await supabase
+        .from("bookmarked_questions")
+        .delete()
+        .eq("question_id", question.id);
+    } else {
+      await supabase.from("bookmarked_questions").insert({
+        question_id: question.id,
+      });
+    }
+    await fetchAllBookmarkedQuestionId();
+  };
+
   return (
     <Stack>
       <Typography variant="h5">
-        <pre className="p-6 rounded-xl bg-card border bg-[#15181e] border-[#272c34] font-mono text-sm  overflow-x-auto">
-          {`${currQuestionNumber}  ${question.question}`}
-        </pre>
+        <div className="flex justify-between w-full">
+          <pre className="p-6 rounded-xl bg-card  w-full text-sm  overflow-x-auto">
+            {`${currQuestionNumber}  ${question.question}`}
+          </pre>
+          <button
+            onClick={() => toggleBookMark()}
+            className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"
+            title={isIdExist ? "Remove bookmark" : "Bookmark question"}
+          >
+            {isIdExist ? (
+              <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+            ) : (
+              <StarOff className="w-5 h-5 text-[#707D8F]" />
+            )}
+          </button>
+        </div>
       </Typography>
-      <Box pt={3} className="space-y-2">
+      <Box className="space-y-2">
         {question &&
           options.map(({ text, option }) => (
             <DisplayOption
