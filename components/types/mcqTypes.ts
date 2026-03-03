@@ -32,11 +32,12 @@ export type MCQDisplayProps = {
 export type DisplayOptionProps = {
   text: string;
   option?: string;
-  isSelected?: boolean;
-  setSelectOption?: (value: string) => void;
-  isCheckAnswerBox?: boolean;
-  color?: string;
-  disabled?: boolean;
+  mode: "attempt" | "submitted" | "review" | "info";
+  correctAnswer?: string;
+  userAnswer?: string;
+  selectedOption?: string;
+  onSelect?: (option: string) => void;
+  isInfoColor?: string;
 };
 
 export type chckAnswerProps = {

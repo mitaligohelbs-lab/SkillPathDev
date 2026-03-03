@@ -23,8 +23,17 @@ export const quizSlice = createSlice({
         state.wrong += 1;
       }
     },
+    reset: (state) => {
+      state.totalQuestion = 10;
+      state.attemp = 1;
+      state.correct = 0;
+      state.wrong = 0;
+      state.topic = "";
+      state.level = "";
+      state.technology = "";
+    },
   },
 });
 
-export const { isSubmitted } = quizSlice.actions;
+export const { isSubmitted, reset } = quizSlice.actions;
 export default quizSlice.reducer;

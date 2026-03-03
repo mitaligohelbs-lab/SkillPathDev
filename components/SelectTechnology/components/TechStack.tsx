@@ -4,11 +4,9 @@ import { TECHNOLOGIES } from "@/constant";
 import { Box, Grid, Stack } from "@mui/material";
 import { Lock, ChevronRight } from "lucide-react";
 import Card from "@/components/common/Card";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const TechStack = () => {
-  const router = useRouter();
-
   return (
     <Stack
       justifyContent={"center"}
@@ -16,14 +14,13 @@ const TechStack = () => {
       spacing={2}
       className="overflow-auto w-full"
     >
-      {TECHNOLOGIES.map(({ name, icon, enabled, id }) => {
-        return (
-          <Card
-            key={id}
-            disabled={!enabled}
-            id={id}
-            handleCardClick={() => router.push(`/topic/${id}`)}
-          >
+      {TECHNOLOGIES.map(({ name, icon, enabled, id }) => (
+        <Link
+          key={id}
+          href={enabled ? `/topic/${id}` : "#"}
+          className={enabled ? "group w-full" : "pointer-events-none w-full"}
+        >
+          <Card disabled={!enabled} id={id}>
             <Grid className="flex gap-2 justify-between items-center">
               <Grid className="flex gap-3">
                 <Box className="text-3xl">{icon}</Box>
@@ -49,8 +46,8 @@ const TechStack = () => {
               )}
             </Grid>
           </Card>
-        );
-      })}
+        </Link>
+      ))}
     </Stack>
   );
 };

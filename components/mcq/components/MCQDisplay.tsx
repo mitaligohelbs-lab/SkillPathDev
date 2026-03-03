@@ -3,6 +3,8 @@
 import DisplayOption from "@/components/common/DisplayOption";
 import CheckAnswerButton from "@/components/result/components/CheckAnswerButton";
 import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
+import { addUserAnswer } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
+import { useAppDispatch } from "@/lib/hook";
 import { supabase } from "@/lib/supabase";
 import { Box, Stack, Typography } from "@mui/material";
 import { Star, StarOff } from "lucide-react";
@@ -13,6 +15,7 @@ const MCQDisplay = ({
   setCurrentQuestionNumber,
   currQuestionNumber,
 }: MCQDisplayProps) => {
+  const dispatch = useAppDispatch();
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [allBookmarkedData, setIsAllBookmarkedData] = useState<bookmarkProps[]>(
@@ -31,6 +34,22 @@ const MCQDisplay = ({
   useEffect(() => {
     fetchAllBookmarkedQuestionId();
   }, []);
+
+  useEffect(() => {
+    if (selectOption) {
+      dispatch(
+        addUserAnswer({
+          questionId: question.id,
+          answer: selectOption,
+        }),
+      );
+    }
+  }, [selectOption, question.id]);
+
+  useEffect(() => {
+    setSubmitted(false);
+    setSelectOption(null);
+  }, [question.id]);
 
   const isCorrect = question?.correct_answer === selectOption;
 
@@ -63,7 +82,7 @@ const MCQDisplay = ({
     <Stack>
       <Typography variant="h5">
         <div className="flex justify-between w-full">
-          <pre className="p-6 rounded-xl bg-card  w-full text-sm  overflow-x-auto">
+          <pre className="p-6 rounded-xl w-full text-[18px]  overflow-x-auto">
             {`${currQuestionNumber}  ${question.question}`}
           </pre>
           <button
@@ -86,9 +105,9 @@ const MCQDisplay = ({
               key={option}
               text={text}
               option={option}
-              isSelected={selectOption === option}
-              setSelectOption={setSelectOption}
-              disabled={submitted}
+              mode="attempt"
+              selectedOption={selectOption ?? undefined}
+              onSelect={setSelectOption}
             />
           ))}
       </Box>
@@ -104,13 +123,13 @@ const MCQDisplay = ({
       {submitted && (
         <div className="pt-3">
           <DisplayOption
+            mode="info"
             text={
               isCorrect
                 ? "✓ Correct!"
-                : `✗ Wrong! Correct answer: ${question?.correct_answer}`
+                : `✗ Wrong! Correct answer: ${question.correct_answer}`
             }
-            isCheckAnswerBox
-            color={
+            isInfoColor={
               isCorrect
                 ? "bg-[#31C47F]/10 border-[#31c47f] text-[#31c47f]"
                 : "bg-[#d345451a] border-[#d34545] text-[#d34545]"
