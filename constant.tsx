@@ -3,18 +3,18 @@ import { Code2, Target, TrendingUp } from "lucide-react";
 export const ALL_FEATURE = [
   {
     icon: <Target />,
-    title: "Focused Topics",
-    desc: "No random DSA. Pure language concepts.",
+    title: "Focused MCQs",
+    desc: "Topic-wise questions, 10 per level.",
   },
   {
     icon: <TrendingUp />,
     title: "Progressive Levels",
-    desc: "Unlock harder challenges as you grow.",
+    desc: "Score 7+ to unlock the next level.",
   },
   {
     icon: <Code2 />,
-    title: "MCQ + Coding",
-    desc: "Mixed rounds like real interviews.",
+    title: "Compete & Learn",
+    desc: "Leaderboards, analytics, bookmarks.",
   },
 ];
 

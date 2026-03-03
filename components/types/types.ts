@@ -4,7 +4,7 @@ export type CardTypes = {
   children?: React.ReactNode;
   disabled?: boolean;
   borderColor?: string;
-  handleCardClick: () => void;
+  handleCardClick?: () => void;
   id: number | string;
 };
 
@@ -21,4 +21,22 @@ export type LayoutType = {
 export type MainHeaderTypes = {
   text: string;
   subText?: string;
+  isDisplay?: boolean;
+};
+
+export type featureCardTypes = {
+  title: string;
+  icon?: React.ReactNode;
+  desc: string;
+  bgColor?: string;
+  textColor?: string;
+  descriptionFont?: string;
+};
+
+export type actionButtonProps = {
+  icon: React.ReactNode;
+  text: string;
+  textColor?: string;
+  bgColor?: string;
+  handleClick?: () => void;
 };

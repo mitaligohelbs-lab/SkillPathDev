@@ -2,16 +2,54 @@
 
 import DisplayOption from "@/components/common/DisplayOption";
 import CheckAnswerButton from "@/components/result/components/CheckAnswerButton";
-import { MCQDisplayProps } from "@/components/types/mcqTypes";
+import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
+import { addUserAnswer } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
+import { useAppDispatch } from "@/lib/hook";
+import { supabase } from "@/lib/supabase";
 import { Box, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Star, StarOff } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const MCQDisplay = ({
   question,
   setCurrentQuestionNumber,
+  currQuestionNumber,
 }: MCQDisplayProps) => {
+  const dispatch = useAppDispatch();
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [allBookmarkedData, setIsAllBookmarkedData] = useState<bookmarkProps[]>(
+    [],
+  );
+
+  const fetchAllBookmarkedQuestionId = async () => {
+    try {
+      const { data } = await supabase.from("bookmarked_questions").select("*");
+      setIsAllBookmarkedData(data ?? []);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAllBookmarkedQuestionId();
+  }, []);
+
+  useEffect(() => {
+    if (selectOption) {
+      dispatch(
+        addUserAnswer({
+          questionId: question.id,
+          answer: selectOption,
+        }),
+      );
+    }
+  }, [selectOption, question.id]);
+
+  useEffect(() => {
+    setSubmitted(false);
+    setSelectOption(null);
+  }, [question.id]);
 
   const isCorrect = question?.correct_answer === selectOption;
 
@@ -22,23 +60,54 @@ const MCQDisplay = ({
     { text: question.D, option: "D" },
   ];
 
+  const isIdExist = allBookmarkedData.some(
+    (item) => item.question_id === question.id,
+  );
+
+  const toggleBookMark = async () => {
+    if (isIdExist) {
+      await supabase
+        .from("bookmarked_questions")
+        .delete()
+        .eq("question_id", question.id);
+    } else {
+      await supabase.from("bookmarked_questions").insert({
+        question_id: question.id,
+      });
+    }
+    await fetchAllBookmarkedQuestionId();
+  };
+
   return (
     <Stack>
       <Typography variant="h5">
-        <pre className="p-6 rounded-xl bg-card border bg-[#15181e] border-[#272c34] font-mono text-sm  overflow-x-auto">
-          {question.question}
-        </pre>
+        <div className="flex justify-between w-full">
+          <pre className="p-6 rounded-xl w-full text-[18px]  overflow-x-auto">
+            {`${currQuestionNumber}  ${question.question}`}
+          </pre>
+          <button
+            onClick={() => toggleBookMark()}
+            className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"
+            title={isIdExist ? "Remove bookmark" : "Bookmark question"}
+          >
+            {isIdExist ? (
+              <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+            ) : (
+              <StarOff className="w-5 h-5 text-[#707D8F]" />
+            )}
+          </button>
+        </div>
       </Typography>
-      <Box pt={3} className="space-y-2">
+      <Box className="space-y-2">
         {question &&
           options.map(({ text, option }) => (
             <DisplayOption
               key={option}
               text={text}
               option={option}
-              isSelected={selectOption === option}
-              setSelectOption={setSelectOption}
-              disabled={submitted}
+              mode="attempt"
+              selectedOption={selectOption ?? undefined}
+              onSelect={setSelectOption}
             />
           ))}
       </Box>
@@ -49,17 +118,18 @@ const MCQDisplay = ({
         setCurrentQuestionNumber={setCurrentQuestionNumber}
         resetOption={() => setSelectOption(null)}
         isCorrect={isCorrect}
+        currQuestionNumber={currQuestionNumber}
       />
       {submitted && (
         <div className="pt-3">
           <DisplayOption
+            mode="info"
             text={
               isCorrect
                 ? "✓ Correct!"
-                : `✗ Wrong! Correct answer: ${question?.correct_answer}`
+                : `✗ Wrong! Correct answer: ${question.correct_answer}`
             }
-            isCheckAnswerBox
-            color={
+            isInfoColor={
               isCorrect
                 ? "bg-[#31C47F]/10 border-[#31c47f] text-[#31c47f]"
                 : "bg-[#d345451a] border-[#d34545] text-[#d34545]"

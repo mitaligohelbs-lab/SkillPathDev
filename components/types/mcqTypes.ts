@@ -26,16 +26,18 @@ export type MCQQuestion = {
 export type MCQDisplayProps = {
   question: MCQList;
   setCurrentQuestionNumber: Dispatch<SetStateAction<number>>;
+  currQuestionNumber: number;
 };
 
 export type DisplayOptionProps = {
   text: string;
   option?: string;
-  isSelected?: boolean;
-  setSelectOption?: (value: string) => void;
-  isCheckAnswerBox?: boolean;
-  color?: string;
-  disabled?: boolean;
+  mode: "attempt" | "submitted" | "review" | "info";
+  correctAnswer?: string;
+  userAnswer?: string;
+  selectedOption?: string;
+  onSelect?: (option: string) => void;
+  isInfoColor?: string;
 };
 
 export type chckAnswerProps = {
@@ -44,5 +46,12 @@ export type chckAnswerProps = {
   setSubmitted: Dispatch<SetStateAction<boolean>>;
   setCurrentQuestionNumber: Dispatch<SetStateAction<number>>;
   resetOption: () => void;
-  isCorrect:boolean
+  isCorrect: boolean;
+  currQuestionNumber: number;
+};
+
+export type bookmarkProps = {
+  created_at: string;
+  id: number;
+  question_id: number;
 };
