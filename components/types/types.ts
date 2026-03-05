@@ -40,3 +40,15 @@ export type actionButtonProps = {
   bgColor?: string;
   handleClick?: () => void;
 };
+
+export type InputTypes = {
+  icon: React.ReactNode;
+  placeholder: string;
+  value: string;
+  name: string;
+  type: string;
+  isRequired?: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  error?: string;
+};
