@@ -8,7 +8,7 @@ const Review = () => {
   const allQuestion = useAppSelector((state) => state.analysis)?.question;
   return (
     <Layout>
-      <div className="py-15">
+      <div className="py-20">
         {allQuestion.map((el, idx) => (
           <div className="py-2 w-full">
             <ReviewBox question={el} questionNumber={idx + 1} />
