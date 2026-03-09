@@ -1,6 +1,8 @@
+"use client";
+
 import MiniLeaderBoard from "@/components/result/components/MiniLeaderBoard";
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
-import { useUser } from "@clerk/nextjs";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { Trophy } from "lucide-react";
 
 const DisplayName = ({
@@ -10,7 +12,7 @@ const DisplayName = ({
   currentUserrank,
   isDisplay,
 }: any) => {
-  const { user } = useUser();
+  const { userId } = useCurrentUser();
   const displatTechnology = TECHNOLOGIES.find(
     ({ id }) => id === select?.technology,
   )?.name;
@@ -73,7 +75,7 @@ const DisplayName = ({
             <div
               key={entry.user_id}
               className={`grid grid-cols-[2.5rem_1fr_3rem_4rem] gap-3 items-center p-4 rounded-xl border transition-all ${
-                entry.user_id === user?.id
+                entry.user_id === userId
                   ? "border-[#31c47fdd] bg-[#31c47d0d]"
                   : idx === 0
                     ? "border-yellow-500/30 bg-yellow-500/5"
@@ -84,7 +86,7 @@ const DisplayName = ({
               <div className="min-w-0">
                 <p className="font-mono font-semibold text-[#e7ebef] truncate text-sm">
                   {entry.user_name}
-                  {entry.user_id === user?.id && (
+                  {entry.user_id === userId && (
                     <span className="ml-2 text-xs text-[#31c47f]">(You)</span>
                   )}
                 </p>

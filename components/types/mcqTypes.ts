@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
+type OptionKey = "A" | "B" | "C" | "D";
+
 export type MCQList = {
   id: number;
   technology: string;
@@ -10,7 +12,7 @@ export type MCQList = {
   B: string;
   C: string;
   D: string;
-  correct_answer: string;
+  correct_answer: OptionKey;
   explanation: string;
   created_at: string;
 };

@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import DisplayName from "./components/DisplayName";
-import { useUser } from "@clerk/nextjs";
 import { useAppSelector } from "@/lib/hook";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 const LeaderBoard = ({ isDisplay = true }) => {
-  const { user } = useUser();
+  const { userId, fullName } = useCurrentUser();
   const [leaderBoardData, setLeaderBoardData] = useState<any>([]);
   const [selectedLevel, setSelectedLevel] = useState(1);
   const [select, setSelect] = useState({
@@ -20,7 +20,7 @@ const LeaderBoard = ({ isDisplay = true }) => {
   );
 
   const findCurrUserIndex = leaderBoardData.findIndex(
-    ({ user_id }: any) => user_id === user?.id,
+    ({ user_id }: any) => user_id === userId,
   );
 
   useEffect(() => {
@@ -37,8 +37,8 @@ const LeaderBoard = ({ isDisplay = true }) => {
     if (!isDisplay) {
       setLeaderBoardData([
         {
-          user_id: user?.id,
-          user_name: user?.fullName,
+          user_id: userId,
+          user_name: fullName,
           score: correct,
         },
       ]);

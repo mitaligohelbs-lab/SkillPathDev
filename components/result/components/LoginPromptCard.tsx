@@ -1,22 +1,22 @@
 "use client";
 
 import { LOGIN_PROMPT } from "@/constant";
-import { useUser } from "@clerk/nextjs";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { useRouter } from "next/navigation";
 
 const LoginPromptCard = () => {
-  const { user } = useUser();
+  const { userId } = useCurrentUser();
   const router = useRouter();
   return (
     <div>
-      {!user && (
+      {!userId && (
         <div className="p-6 rounded-xl border border-[#272b35] bg-[#15181e] space-y-3">
           <h3 className="font-semibold text-lg text-foreground flex items-center gap-2">
             🔐 Unlock More Features
           </h3>
           <ul className="space-y-1.5 text-sm text-[#e7ebef]">
-            {LOGIN_PROMPT.map(({ text, icon }) => (
-              <li className="flex items-center gap-2">
+            {LOGIN_PROMPT.map(({ text, icon }, index) => (
+              <li className="flex items-center gap-2" key={index}>
                 {icon} <span>{text}</span>
               </li>
             ))}

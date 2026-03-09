@@ -5,12 +5,14 @@ import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
 import { saveProgress } from "@/lib/features/progressSlice";
 import { reset } from "@/lib/features/QuizSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { persistor } from "@/lib/store";
 
 import { ArrowRight, BarChart3, RotateCcw, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const ActionButton = ({ user }: any) => {
+const ActionButton = () => {
+  const { userId } = useCurrentUser();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const { correct } = useAppSelector((state) => state.quiz);
@@ -69,7 +71,7 @@ const ActionButton = ({ user }: any) => {
           handleClick={handleMoveNextLevel}
         />
       )}
-      {user && (
+      {userId && (
         <CommonActionButton
           icon={<BarChart3 />}
           text=" View Leaderboard"
