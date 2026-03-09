@@ -2,21 +2,20 @@
 import FeatureCard from "@/components/common/FeatureCard";
 import { useAppSelector } from "@/lib/hook";
 import { CheckCircle2, Trophy, XCircle } from "lucide-react";
+import LoginPromptCard from "./LoginPromptCard";
 
 const ResultHeader = () => {
   const { topic, level, correct } = useAppSelector((state) => state.quiz);
   const accuracy = Math.round((correct / 10) * 100);
   const passed = correct >= 7;
+
   return (
     <div className="space-y-3">
       <div
-        className={`w-20 h-20 rounded-2xl pb-3  mx-auto flex items-center justify-center ${passed ? "bg-[#31C47F]/10  " : "bg-[#d345451a] "}`}
-        style={
-          passed ? { boxShadow: "0 0 40px hsl(152 60% 48% / 0.4)" } : undefined
-        }
+        className={`w-20 h-20 rounded-2xl mx-auto flex items-center justify-center ${passed ? "bg-[#31C47F]  " : "bg-[#d345451a] "}`}
       >
         {passed ? (
-          <Trophy className="w-10 h-10 text-[#31c47f] border-[#31c47f]" />
+          <Trophy className="w-10 h-10 text-black border-[#31c47f]" />
         ) : (
           <XCircle className="w-10 h-10 text-[#d34545] border-[#d34545] " />
         )}
@@ -57,15 +56,22 @@ const ResultHeader = () => {
 
         <div className="flex flex-col ">
           <div className={`${passed ? "text-[#31c47f]" : "text-[#d34545]  "}`}>
-            {passed ? "Level 2 Unlocked !" : "Score 7/10 to unlock next level"}
+            {+level === 3
+              ? "All Levels Completed!"
+              : passed
+                ? `Level ${+level + 1} Unlocked !`
+                : "Score 7/10 to unlock next level"}
           </div>
           <div className="text-sm text-[#707d8f]">
-            {passed
-              ? "You’re ready for the next challenge 🚀"
-              : "Review answers and try again"}
+            {+level === 3
+              ? "You’ve successfully mastered this topic. Great job! 🚀"
+              : passed
+                ? "You’re ready for the next challenge 🚀"
+                : "Review answers and try again"}
           </div>
         </div>
       </div>
+      <LoginPromptCard />
     </div>
   );
 };

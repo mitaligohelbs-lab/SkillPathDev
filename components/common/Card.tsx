@@ -8,21 +8,25 @@ const Card = ({
   disabled = false,
   id,
   borderColor = "#31c47f4d",
+  bgColor = "#15181e",
   handleCardClick = () => {},
   ...props
 }: CardTypes) => (
   <button
     key={id}
     disabled={disabled}
-    className={clsx(
-      "p-6 border rounded-xl w-full group bg-[#15181e]",
-      !disabled
+    style={{
+      borderColor: !disabled
         ? borderColor
-          ? `border-[${borderColor}]`
-          : `border-[#31c47f4d]`
-        : "border-[#272c34]",
+          ? borderColor
+          : "#31c47f4d"
+        : "#272c34",
+    }}
+    className={clsx(
+      "p-6 border rounded-xl w-full group",
+      `bg-[${bgColor}]`,
       !disabled
-        ? "hover:border-[#31C47F] shadow-sm hover:shadow-[0_0_20px_rgba(49,196,122,0.3)]"
+        ? "hover:border-[#31C47F] shadow-md hover:shadow-[0_8px_30px_rgba(49,196,127,0.1)] transition-all duration-300"
         : "hover:cursor-not-allowed opacity-50",
     )}
     onClick={handleCardClick}

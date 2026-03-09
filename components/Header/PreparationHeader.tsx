@@ -10,7 +10,7 @@ const PreparationHeader = () => {
   return (
     <div className="flex justify-between border-b px-6 py-4 items-center gap-3 border-[#272c3480]">
       <Header text={`MCQ Round | ${technology} | ${topic} | Level ${level}`} />
-      <div className="text-sm text-[#707D8f]">
+      <div className="text-sm text-[#707D8f] whitespace-nowrap">
         {`${quizData.attemp} / ${quizData.totalQuestion}`}
       </div>
     </div>

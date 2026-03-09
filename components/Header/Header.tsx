@@ -22,7 +22,10 @@ const Header = ({ text, subText, isDisplay = true }: MainHeaderTypes) => {
             <ArrowLeft className="w-5 h-5 text-foreground" />
           </button>
         )}
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center  bg-[#31c47f]">
+        <div
+          className="w-8 h-8 rounded-lg flex items-center justify-center cursor-pointer bg-[#31c47f]"
+          onClick={() => router.push("/")}
+        >
           <Code2 className="w-5 h-5 text-black" />
         </div>
         <span className="font-mono font-bold text-lg">

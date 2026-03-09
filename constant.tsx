@@ -97,3 +97,26 @@ export const LEVELS = [
     description: "Expert-level mastery and optimization",
   },
 ];
+
+export const LOGIN_PROMPT = [
+  {
+    text: "Bookmark questions for later review",
+    icon: "⭐",
+  },
+  {
+    text: "Compete on the Leaderboard",
+    icon: "🏆",
+  },
+  {
+    text: "Track your Analytics & progress",
+    icon: "📊 ",
+  },
+  {
+    text: "Take notes while solving questions",
+    icon: "📝",
+  },
+  {
+    text: "See your rank among other devs",
+    icon: "🎯",
+  },
+];

@@ -6,6 +6,7 @@ export type CardTypes = {
   borderColor?: string;
   handleCardClick?: () => void;
   id: number | string;
+  bgColor?: string;
 };
 
 export type HeaderTypes = {
