@@ -7,7 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="fixed left-0 right-0 top-0 bg-[#101319] z-10">
+      <div className="fixed w-full left-0 right-0 top-0 bg-[#101319] z-10 ">
         <SetupHeader />
       </div>
       <div className="grow overflow-y-auto">{children}</div>

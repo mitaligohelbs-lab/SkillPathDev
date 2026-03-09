@@ -2,6 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import quizReducer from "./features/QuizSlice";
 import techStackReducer from "./features/CurrentSelectedTachSlice";
 import ananlysisReducer from "./features/CurrentUserLevelWiseAnanlysis";
+import progressReduce from "./features/progressSlice";
 import {
   persistReducer,
   persistStore,
@@ -17,12 +18,13 @@ const rootReducer = combineReducers({
   quiz: quizReducer,
   technology: techStackReducer,
   analysis: ananlysisReducer,
+  progress: progressReduce,
 });
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["technology", "ananlysis"],
+  whitelist: ["technology", "ananlysis", "progress"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

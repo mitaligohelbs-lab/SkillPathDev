@@ -15,6 +15,8 @@ const MCQ = () => {
   const { technology, topic, level } = useAppSelector(
     (state) => state.technology,
   );
+  const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
+  const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
 
   const currTechnologyName = TECHNOLOGIES.find(
     ({ id }) => id === technology,
@@ -22,25 +24,23 @@ const MCQ = () => {
 
   const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
 
-  const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
-  const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
-
   const currentQuestion = allQuestionData.find(
     (_, idx) => idx + 1 === currQuestionNumber,
   );
 
   async function fetchMCQs() {
     try {
-      if (!currTechnologyName || !currTopicName || !level) return;
       const { data } = await supabase
         .from("skilldev_mcq")
         .select("*")
-        .eq("technology", currTechnologyName)
-        .eq("topic", currTopicName)
-        .eq("level", `Level ${level}`)
-        .limit(10);
+        .eq("technology", currTechnologyName || technology)
+        .eq("topic", currTopicName || topic)
+        .eq("level", `Level ${level}`);
 
-      const formattedQuestion = data?.map(
+      const shuffled = data?.sort(() => 0.5 - Math.random());
+      const questions = shuffled?.slice(0, 10);
+
+      const formattedQuestion = questions?.map(
         ({ id, question, explanation, correct_answer, A, B, C, D }) => ({
           id,
           question,
@@ -56,7 +56,7 @@ const MCQ = () => {
         }),
       );
       dispatch(addQuestions(formattedQuestion ?? []));
-      setAllQuestionData(data ?? []);
+      setAllQuestionData(questions ?? []);
     } catch (error) {
       console.log(error);
     }
@@ -66,7 +66,7 @@ const MCQ = () => {
   }, [technology, topic, level]);
 
   return (
-    <Layout isCard>
+    <Layout>
       {currentQuestion && (
         <MCQDisplay
           question={currentQuestion}

@@ -6,6 +6,7 @@ import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
 import { addUserAnswer } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
 import { useAppDispatch } from "@/lib/hook";
 import { supabase } from "@/lib/supabase";
+import { useUser } from "@clerk/nextjs";
 import { Box, Stack, Typography } from "@mui/material";
 import { Star, StarOff } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -15,6 +16,7 @@ const MCQDisplay = ({
   setCurrentQuestionNumber,
   currQuestionNumber,
 }: MCQDisplayProps) => {
+  const { user } = useUser();
   const dispatch = useAppDispatch();
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -85,17 +87,19 @@ const MCQDisplay = ({
           <pre className="p-6 rounded-xl w-full text-[18px]  overflow-x-auto">
             {`${currQuestionNumber}  ${question.question}`}
           </pre>
-          <button
-            onClick={() => toggleBookMark()}
-            className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"
-            title={isIdExist ? "Remove bookmark" : "Bookmark question"}
-          >
-            {isIdExist ? (
-              <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
-            ) : (
-              <StarOff className="w-5 h-5 text-[#707D8F]" />
-            )}
-          </button>
+          {user && (
+            <button
+              onClick={() => toggleBookMark()}
+              className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"
+              title={isIdExist ? "Remove bookmark" : "Bookmark question"}
+            >
+              {isIdExist ? (
+                <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+              ) : (
+                <StarOff className="w-5 h-5 text-[#707D8F]" />
+              )}
+            </button>
+          )}
         </div>
       </Typography>
       <Box className="space-y-2">

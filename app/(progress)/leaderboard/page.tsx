@@ -1,5 +1,4 @@
-const page = () => {
-  return <div>Leaderboard</div>;
-};
+import LeaderBoard from "@/components/leaderboard/LeaderBoard";
 
+const page = () => <LeaderBoard />;
 export default page;
