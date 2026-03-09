@@ -4,11 +4,12 @@ import { ArrowLeft, BarChart3, Code2, Star, Trophy } from "lucide-react";
 import { MainHeaderTypes } from "../types/types";
 import { useRouter } from "next/navigation";
 import SignInButton from "../auth/components/SignInButton";
-import { SignOutButton, useUser } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 const Header = ({ text, subText, isDisplay = true }: MainHeaderTypes) => {
-  const { user } = useUser();
+  const { userId } = useCurrentUser();
   const router = useRouter();
 
   return (
@@ -34,7 +35,7 @@ const Header = ({ text, subText, isDisplay = true }: MainHeaderTypes) => {
         </span>
       </div>
 
-      {user ? (
+      {userId ? (
         <div className="flex items-center gap-3">
           <Link
             href="/analysis"

@@ -1,11 +1,4 @@
-import React from 'react'
+import BookMark from "@/components/bookmark/BookMark";
 
-const page = () => {
-  return (
-    <div>
-      Bookmark
-    </div>
-  )
-}
-
-export default page
+const page = () => <BookMark />;
+export default page;

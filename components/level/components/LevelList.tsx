@@ -8,14 +8,14 @@ import { Box, Grid, Stack } from "@mui/material";
 import { CheckCircle2, Lock, Play } from "lucide-react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { useUser } from "@clerk/nextjs";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 const LevelList = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
-  const { user } = useUser();
+  const { userId } = useCurrentUser();
 
   const [currUserData, setCurrentUserData] = useState<any>(null);
 
@@ -32,7 +32,7 @@ const LevelList = () => {
     const { data: existingUser, error } = await supabase
       .from("user_scores")
       .select("*")
-      .eq("user_id", user?.id)
+      .eq("user_id", userId)
       .eq("technology", currTechnologyName || technology)
       .eq("topic", currTopicName || topic);
 
@@ -46,13 +46,13 @@ const LevelList = () => {
 
   useEffect(() => {
     if (
-      user &&
+      userId &&
       (currTechnologyName || technology) &&
       (currTopicName || topic)
     ) {
       checkUser();
     }
-  }, [user, currTechnologyName, technology, currTopicName, topic]);
+  }, [userId, currTechnologyName, technology, currTopicName, topic]);
 
   const allLevel =
     useAppSelector((state) => state.progress)?.guestProgress?.[technology]?.[
@@ -65,7 +65,7 @@ const LevelList = () => {
     if (step.level === 1) {
       unlock = true;
     } else {
-      if (user) {
+      if (userId) {
         unlock = currUserData?.[step?.level - 2]?.score >= 7;
       } else {
         unlock = allLevel?.[step?.level - 2]?.score >= 7;
@@ -75,7 +75,7 @@ const LevelList = () => {
     return {
       ...step,
       unlock,
-      levelWiseScore: user
+      levelWiseScore: userId
         ? currUserData?.[step?.level - 1]?.score
         : allLevel?.[step?.level - 1]?.score,
     };

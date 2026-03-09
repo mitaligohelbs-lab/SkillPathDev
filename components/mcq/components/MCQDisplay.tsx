@@ -5,8 +5,8 @@ import CheckAnswerButton from "@/components/result/components/CheckAnswerButton"
 import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
 import { addUserAnswer } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
 import { useAppDispatch } from "@/lib/hook";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { supabase } from "@/lib/supabase";
-import { useUser } from "@clerk/nextjs";
 import { Box, Stack, Typography } from "@mui/material";
 import { Star, StarOff } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ const MCQDisplay = ({
   setCurrentQuestionNumber,
   currQuestionNumber,
 }: MCQDisplayProps) => {
-  const { user } = useUser();
+  const { userId } = useCurrentUser();
   const dispatch = useAppDispatch();
   const [selectOption, setSelectOption] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -26,7 +26,10 @@ const MCQDisplay = ({
 
   const fetchAllBookmarkedQuestionId = async () => {
     try {
-      const { data } = await supabase.from("bookmarked_questions").select("*");
+      const { data } = await supabase
+        .from("bookmarked_questions")
+        .select("*")
+        .eq("user_id", userId);
       setIsAllBookmarkedData(data ?? []);
     } catch (error) {
       console.log(error);
@@ -75,6 +78,7 @@ const MCQDisplay = ({
     } else {
       await supabase.from("bookmarked_questions").insert({
         question_id: question.id,
+        user_id: userId,
       });
     }
     await fetchAllBookmarkedQuestionId();
@@ -84,10 +88,10 @@ const MCQDisplay = ({
     <Stack>
       <Typography variant="h5">
         <div className="flex justify-between w-full">
-          <pre className="p-6 rounded-xl w-full text-[18px]  overflow-x-auto">
-            {`${currQuestionNumber}  ${question.question}`}
+          <pre className="p-6 rounded-xl w-full text-[18px] whitespace-pre-wrap wrap-break-words">
+            {`${currQuestionNumber} ${question.question}`}
           </pre>
-          {user && (
+          {userId && (
             <button
               onClick={() => toggleBookMark()}
               className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"

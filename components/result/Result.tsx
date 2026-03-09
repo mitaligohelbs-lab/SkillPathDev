@@ -9,9 +9,10 @@ import { useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
 import LeaderBoard from "../leaderboard/LeaderBoard";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 const Result = () => {
-  const { user } = useUser();
+  const { userId, fullName } = useCurrentUser();
 
   const { technology, topic, correct, level } = useAppSelector(
     (state) => state.quiz,
@@ -24,18 +25,18 @@ const Result = () => {
   const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
 
   const addScore = async () => {
-    if (!user || !currTechnologyName || !currTopicName) return;
+    if (!userId || !currTechnologyName || !currTopicName) return;
 
     try {
       // Check existing record
       const { data: existingUser, error } = await supabase
         .from("user_scores")
         .select("score")
-        .eq("user_id", user.id)
+        .eq("user_id", userId)
         .eq("technology", currTechnologyName)
         .eq("topic", currTopicName)
         .eq("level", level)
-        .eq("user_name", user.fullName)
+        .eq("user_name", fullName)
         .maybeSingle();
 
       if (error) {
@@ -50,8 +51,8 @@ const Result = () => {
             .from("user_scores")
             .update({ score: correct })
             .match({
-              user_id: user.id,
-              user_name: user.fullName,
+              user_id: userId,
+              user_name: fullName,
               technology: currTechnologyName,
               topic: currTopicName,
               level,
@@ -64,12 +65,12 @@ const Result = () => {
         const { error: insertError } = await supabase
           .from("user_scores")
           .insert({
-            user_id: user.id,
+            user_id: userId,
             technology: currTechnologyName,
             topic: currTopicName,
             level,
             score: correct,
-            user_name: user.fullName,
+            user_name: fullName,
           });
 
         if (insertError) console.log("Insert error:", insertError);
@@ -80,17 +81,17 @@ const Result = () => {
   };
 
   useEffect(() => {
-    if (technology && topic && user && correct >= 7 && level) {
+    if (technology && topic && userId && correct >= 7 && level) {
       addScore();
     }
-  }, [technology, topic, user, correct, level]);
+  }, [technology, topic, userId, correct, level]);
 
   return (
     <Layout>
-      <div className="w-full space-y-3 pt-20">
+      <div className="w-full space-y-3 pt-20 pb-10">
         <ResultHeader />
-        {user && <LeaderBoard isDisplay={false} />}
-        <ActionButton user={user} />
+        {userId && <LeaderBoard isDisplay={false} />}
+        <ActionButton />
       </div>
     </Layout>
   );

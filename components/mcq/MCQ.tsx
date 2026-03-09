@@ -66,7 +66,7 @@ const MCQ = () => {
   }, [technology, topic, level]);
 
   return (
-    <Layout>
+    <div className="max-w-2xl overflow-y-auto pt-20 mx-auto">
       {currentQuestion && (
         <MCQDisplay
           question={currentQuestion}
@@ -74,7 +74,7 @@ const MCQ = () => {
           currQuestionNumber={currQuestionNumber}
         />
       )}
-    </Layout>
+    </div>
   );
 };
 
