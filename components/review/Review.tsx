@@ -9,9 +9,9 @@ const Review = () => {
   return (
     <Layout>
       <div className="py-20">
-        {allQuestion.map((el, idx) => (
+        {allQuestion.map((question, idx) => (
           <div className="py-2 w-full">
-            <ReviewBox question={el} questionNumber={idx + 1} />
+            <ReviewBox question={question} questionNumber={idx + 1} />
           </div>
         ))}
       </div>
