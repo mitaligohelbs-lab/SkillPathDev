@@ -1,6 +1,5 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import Layout from "../common/Layout";
 import ActionButton from "./components/ActionButton";
 import ResultHeader from "./components/ResultHeader";
@@ -80,9 +79,28 @@ const Result = () => {
     }
   };
 
+  const addAttemp = async () => {
+    try {
+      await supabase.from("user_attempts").insert({
+        user_id: userId,
+        technology: technology,
+        topic: topic,
+        level: level,
+        score: correct,
+        total_questions: 10,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (technology && topic && userId && correct >= 7 && level) {
       addScore();
+    }
+
+    if (technology && topic && userId && level && correct) {
+      addAttemp();
     }
   }, [technology, topic, userId, correct, level]);
 
