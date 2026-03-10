@@ -5,16 +5,25 @@ import { useEffect, useState } from "react";
 import { MCQList } from "../types/mcqTypes";
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 
-import Layout from "../common/Layout";
 import MCQDisplay from "./components/MCQDisplay";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { addQuestions } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
+import { useParams } from "next/navigation";
+import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+import { reset } from "@/lib/features/QuizSlice";
+import { persistor } from "@/lib/store";
 
 const MCQ = () => {
+  const {
+    technology: paramTechnology,
+    topic: paramTopic,
+    level: paramLevel,
+  } = useParams();
   const dispatch = useAppDispatch();
   const { technology, topic, level } = useAppSelector(
     (state) => state.technology,
   );
+  const { correct, attemp } = useAppSelector((state) => state.quiz);
   const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
   const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
 
@@ -64,6 +73,27 @@ const MCQ = () => {
   useEffect(() => {
     fetchMCQs();
   }, [technology, topic, level]);
+
+  const handleSetAndRemoveDataInRedux = async () => {
+    if (!technology && !topic && paramTechnology && paramTopic && paramLevel) {
+      dispatch(
+        addTechSrack({
+          technology: paramTechnology,
+          level: +paramLevel,
+          topic: paramTopic,
+        }),
+      );
+    }
+
+    if (attemp && correct) {
+      await persistor.purge();
+      dispatch(reset());
+    }
+  };
+
+  useEffect(() => {
+    handleSetAndRemoveDataInRedux();
+  }, [technology, topic, paramLevel, paramTechnology, paramTopic]);
 
   return (
     <div className="max-w-2xl overflow-y-auto pt-20 mx-auto">

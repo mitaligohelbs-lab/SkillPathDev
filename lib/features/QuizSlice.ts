@@ -25,7 +25,7 @@ export const quizSlice = createSlice({
     },
     reset: (state) => {
       state.totalQuestion = 10;
-      state.attemp = 1;
+      state.attemp = 0;
       state.correct = 0;
       state.wrong = 0;
       state.topic = "";

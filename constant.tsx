@@ -112,10 +112,6 @@ export const LOGIN_PROMPT = [
     icon: "📊 ",
   },
   {
-    text: "Take notes while solving questions",
-    icon: "📝",
-  },
-  {
     text: "See your rank among other devs",
     icon: "🎯",
   },

@@ -68,7 +68,7 @@ const LevelList = () => {
       if (userId) {
         unlock = currUserData?.[step?.level - 2]?.score >= 7;
       } else {
-        unlock = allLevel?.[step?.level - 2]?.score >= 7;
+        unlock = allLevel?.[step?.level - 1]?.score >= 7;
       }
     }
 
@@ -77,7 +77,7 @@ const LevelList = () => {
       unlock,
       levelWiseScore: userId
         ? currUserData?.[step?.level - 1]?.score
-        : allLevel?.[step?.level - 1]?.score,
+        : allLevel?.[step?.level]?.score,
     };
   });
 
