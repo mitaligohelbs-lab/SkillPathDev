@@ -58,13 +58,15 @@ const LeaderBoard = ({ isDisplay = true }) => {
           selectedLevel={selectedLevel}
         />
       )}
-      <DisplayName
-        data={leaderBoardData}
-        select={select}
-        selectedLevel={selectedLevel}
-        currentUserrank={findCurrUserIndex + 1}
-        isDisplay={isDisplay}
-      />
+      {select?.technology.toLowerCase() === "javascript" && (
+        <DisplayName
+          data={leaderBoardData}
+          select={select}
+          selectedLevel={selectedLevel}
+          currentUserrank={findCurrUserIndex + 1}
+          isDisplay={isDisplay}
+        />
+      )}
     </div>
   );
 };

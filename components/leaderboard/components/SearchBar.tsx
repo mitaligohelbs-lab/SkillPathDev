@@ -120,69 +120,71 @@ const SearchBar = ({
             ))}
           </Select>
         </FormControl>
-        <FormControl
-          size="small"
-          fullWidth
-          sx={{
-            backgroundColor: "#1c2128",
-            borderRadius: "8px",
-
-            "& .MuiOutlinedInput-root": {
-              color: "white",
-
-              "& fieldset": {
-                borderColor: "#272c34",
-                borderRadius: "8px",
-              },
-
-              "&:hover fieldset": {
-                borderColor: "#31C47F",
-              },
-
-              "&.Mui-focused fieldset": {
-                borderColor: "#31C47F",
-              },
-            },
-
-            "& .MuiSvgIcon-root": {
-              color: "#9aa4b2",
-            },
-          }}
-        >
-          <InputLabel
-            id="technology-label"
+        {displatTechnology === "JavaScript" && (
+          <FormControl
+            size="small"
+            fullWidth
             sx={{
-              color: "#9aa4b2",
-              "&.Mui-focused": {
-                color: "#31C47F",
-              },
-            }}
-          >
-            Topic
-          </InputLabel>
+              backgroundColor: "#1c2128",
+              borderRadius: "8px",
 
-          <Select
-            labelId="topic-label"
-            id="topic"
-            value={select.topic}
-            label="topic"
-            onChange={(e) => handleChange(e.target.value, "topic")}
-            MenuProps={{
-              PaperProps: {
-                sx: {
-                  bgcolor: "#1c2128",
-                  color: "#9aa4b2",
-                  border: "1px solid #272c34",
-                  mt: 1,
+              "& .MuiOutlinedInput-root": {
+                color: "white",
+
+                "& fieldset": {
+                  borderColor: "#272c34",
+                  borderRadius: "8px",
+                },
+
+                "&:hover fieldset": {
+                  borderColor: "#31C47F",
+                },
+
+                "&.Mui-focused fieldset": {
+                  borderColor: "#31C47F",
                 },
               },
+
+              "& .MuiSvgIcon-root": {
+                color: "#9aa4b2",
+              },
             }}
           >
-            {JS_TOPICS.map(({ id, name }) => (
-              <MenuItem value={id}>{name}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+            <InputLabel
+              id="technology-label"
+              sx={{
+                color: "#9aa4b2",
+                "&.Mui-focused": {
+                  color: "#31C47F",
+                },
+              }}
+            >
+              Topic
+            </InputLabel>
+
+            <Select
+              labelId="topic-label"
+              id="topic"
+              value={select.topic}
+              label="topic"
+              onChange={(e) => handleChange(e.target.value, "topic")}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: "#1c2128",
+                    color: "#9aa4b2",
+                    border: "1px solid #272c34",
+                    mt: 1,
+                  },
+                },
+              }}
+            >
+              {JS_TOPICS.map(({ id, name }) => (
+                <MenuItem value={id}>{name}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
         <div className="flex gap-2">
           {LEVELS.map((l) => (
             <button
