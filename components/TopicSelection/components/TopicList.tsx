@@ -1,8 +1,11 @@
 "use client";
+
+import { useParams, useRouter } from "next/navigation";
+
+import { Grid, Stack, Box } from "@mui/material";
+
 import Card from "@/components/common/Card";
 import { JS_TOPICS } from "@/constant";
-import { Grid, Stack, Box } from "@mui/material";
-import { useParams, useRouter } from "next/navigation";
 
 const TopicList = () => {
   const router = useRouter();

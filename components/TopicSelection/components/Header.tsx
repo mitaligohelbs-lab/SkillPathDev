@@ -1,7 +1,7 @@
 "use client";
 
-import CommonHeader from "@/components/common/CommonHeader";
 import { useParams } from "next/navigation";
+import CommonHeader from "@/components/common/CommonHeader";
 
 const Header = () => {
   const { technology } = useParams();

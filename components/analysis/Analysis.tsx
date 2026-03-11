@@ -1,16 +1,21 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
+
+import { useRouter } from "next/navigation";
+
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FolderX, Target, TrendingUp } from "lucide-react";
+
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { supabase } from "@/lib/supabase";
-import { useEffect, useMemo, useState } from "react";
-import { FolderX, Target, TrendingUp } from "lucide-react";
+import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
+
 import OverallAnalysis from "./components/OverallAnalysis";
 import Graph from "./components/Graph";
 import TopicWiseAnalysis from "./components/TopicWiseAnalysis";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
+
 import { TopicStats } from "../types/analysis";
-import { useRouter } from "next/navigation";
 
 const Analysis = () => {
   const { userId } = useCurrentUser();

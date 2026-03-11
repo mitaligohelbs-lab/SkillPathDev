@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import SearchBar from "./components/SearchBar";
-import DisplayName from "./components/DisplayName";
+
 import { useAppSelector } from "@/lib/hook";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
+import SearchBar from "./components/SearchBar";
+import DisplayName from "./components/DisplayName";
 
 const LeaderBoard = ({ isDisplay = true }) => {
   const { userId, fullName } = useCurrentUser();

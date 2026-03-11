@@ -1,9 +1,11 @@
 "use client";
 
-import MiniLeaderBoard from "@/components/result/components/MiniLeaderBoard";
+import { Trophy } from "lucide-react";
+
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
-import { Trophy } from "lucide-react";
+
+import MiniLeaderBoard from "@/components/result/components/MiniLeaderBoard";
 
 const DisplayName = ({
   data,

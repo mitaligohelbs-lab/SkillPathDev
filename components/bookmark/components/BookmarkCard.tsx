@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import { Trash2 } from "lucide-react";
+
+import { supabase } from "@/lib/supabase";
+
 import DisplayOption from "@/components/common/DisplayOption";
 import { MCQList } from "@/components/types/mcqTypes";
-import { supabase } from "@/lib/supabase";
-import { Trash2 } from "lucide-react";
-import { useEffect, useState } from "react";
 
 const BookmarkCard = ({
   questionId,

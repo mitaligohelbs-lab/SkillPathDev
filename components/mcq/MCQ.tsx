@@ -1,17 +1,20 @@
 "use client";
 
-import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
-import { MCQList } from "../types/mcqTypes";
-import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
+
+import { useParams } from "next/navigation";
+
+import { supabase } from "@/lib/supabase";
+import { persistor } from "@/lib/store";
+import { addQuestions } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
+import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
+import { reset } from "@/lib/features/QuizSlice";
 
 import MCQDisplay from "./components/MCQDisplay";
-import { useAppDispatch, useAppSelector } from "@/lib/hook";
-import { addQuestions } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
-import { useParams } from "next/navigation";
-import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
-import { reset } from "@/lib/features/QuizSlice";
-import { persistor } from "@/lib/store";
+import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
+
+import { MCQList } from "../types/mcqTypes";
 
 const MCQ = () => {
   const {

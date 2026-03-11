@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+
 import ScoreProgressGraph from "./graph/ScoreProgressGraph";
 import TopicPerformanceGraph from "./graph/TopicPerformenceGraph";
 

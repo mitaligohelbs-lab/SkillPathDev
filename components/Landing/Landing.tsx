@@ -1,7 +1,7 @@
 import Feature from "./components/Feature";
 import Header from "./components/Header";
-import StartPracticingButton from "./components/StartPracticingButton";
 import Layout from "../common/Layout";
+import StartPracticingButton from "./components/StartPracticingButton";
 
 const Landing = () => (
   <Layout isCard={false}>

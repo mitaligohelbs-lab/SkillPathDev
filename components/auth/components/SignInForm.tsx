@@ -1,13 +1,17 @@
 "use client";
 
-import Input from "@/components/common/Input";
-import { ArrowRight, Lock, Mail, User, Loader } from "lucide-react";
+import { useState } from "react";
+
+import { useRouter } from "next/navigation";
+
+import { toast } from "react-toastify";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSignIn, useSignUp } from "@clerk/nextjs";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+
+import Input from "@/components/common/Input";
+
+import { ArrowRight, Lock, Mail, User, Loader } from "lucide-react";
 
 const AuthForm = ({ isLogin = false }) => {
   const { isLoaded: isLoadingSignUp, signUp, setActive } = useSignUp();

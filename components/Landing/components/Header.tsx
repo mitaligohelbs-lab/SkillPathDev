@@ -1,5 +1,5 @@
-import { Box, Stack } from "@mui/material";
 import { Zap } from "lucide-react";
+import { Box, Stack } from "@mui/material";
 
 const Header = () => {
   return (

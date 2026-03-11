@@ -1,16 +1,20 @@
 "use client";
 
-import Card from "@/components/common/Card";
-import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
-import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hook";
-import { Box, Grid, Stack } from "@mui/material";
-import { CheckCircle2, Lock, Play } from "lucide-react";
-import { useParams } from "next/navigation";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { CheckCircle2, Lock, Play } from "lucide-react";
+import { Box, Grid, Stack } from "@mui/material";
+
 import { supabase } from "@/lib/supabase";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+
+import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
+
+import Card from "@/components/common/Card";
 
 const LevelList = () => {
   const dispatch = useAppDispatch();

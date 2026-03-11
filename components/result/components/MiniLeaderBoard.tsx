@@ -1,6 +1,7 @@
 "use client";
-import { BarChart3 } from "lucide-react";
+
 import { useRouter } from "next/navigation";
+import { BarChart3 } from "lucide-react";
 
 const MiniLeaderBoard = () => {
   const router = useRouter();

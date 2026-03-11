@@ -1,12 +1,15 @@
 "use client";
 
-import { ArrowLeft, BarChart3, Code2, Star, Trophy } from "lucide-react";
-import { MainHeaderTypes } from "../types/types";
-import { useRouter } from "next/navigation";
-import SignInButton from "../auth/components/SignInButton";
-import { SignOutButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+import { ArrowLeft, BarChart3, Code2, Star, Trophy } from "lucide-react";
+import { SignOutButton } from "@clerk/nextjs";
+
+import SignInButton from "../auth/components/SignInButton";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
+import { MainHeaderTypes } from "../types/types";
 
 const Header = ({ text, subText, isDisplay = true }: MainHeaderTypes) => {
   const { userId } = useCurrentUser();

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@mui/material";
-import { ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { ChevronRight } from "lucide-react";
+import { Button } from "@mui/material";
 
 const StartPracticingButton = () => {
   const router = useRouter();
