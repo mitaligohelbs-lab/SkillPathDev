@@ -10,9 +10,11 @@ import TopicWiseAnalysis from "./components/TopicWiseAnalysis";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 import { TopicStats } from "../types/analysis";
+import { useRouter } from "next/navigation";
 
 const Analysis = () => {
   const { userId } = useCurrentUser();
+  const router = useRouter();
   const [allAnalysisData, setAllAnalysisData] = useState<any>(null);
   const [selectedTech, setSelectedTech] = useState("");
 
@@ -203,11 +205,26 @@ const Analysis = () => {
         </Select>
       </FormControl>
       {selectedTech ? (
-        <div className="space-y-3 py-12">
-          <OverallAnalysis data={ALL_ANALYSIS_DATA} />
-          <Graph topicData={topics} scoreData={allAnalysisData} />
-          <TopicWiseAnalysis data={topics || {}} />
-        </div>
+        allAnalysisData?.length || topics?.length ? (
+          <div className="space-y-3 py-12">
+            <OverallAnalysis data={ALL_ANALYSIS_DATA} />
+            <Graph topicData={topics} scoreData={allAnalysisData} />
+            <TopicWiseAnalysis data={topics || {}} />
+          </div>
+        ) : (
+          <div className="text-center py-12 space-y-2">
+            <FolderX className="w-12 h-12 text-[#272c34] mx-auto" />
+            <p className="text-[#9aa4b2] font-mono">
+              No data found. Ready to start the quiz?
+            </p>
+            <button
+              className="px-6 py-3  bg-[#31c47f] rounded-xl text-[#272c34] font-bold"
+              onClick={() => router.push("/select-tech")}
+            >
+              Start Quiz
+            </button>
+          </div>
+        )
       ) : (
         <div className="text-center py-12 space-y-2">
           <FolderX className="w-12 h-12 text-[#272c34] mx-auto" />

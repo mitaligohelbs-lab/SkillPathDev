@@ -5,6 +5,8 @@ import { bookmarkProps } from "../types/mcqTypes";
 import { supabase } from "@/lib/supabase";
 import BookmarkCard from "./components/BookmarkCard";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+import { FolderX } from "lucide-react";
+import Layout from "../common/Layout";
 
 const BookMark = () => {
   const { userId } = useCurrentUser();
@@ -39,15 +41,26 @@ const BookMark = () => {
   }, []);
 
   return (
-    <div className="pt-20 pb-10 space-y-5">
-      {allBookmarkedData.map(({ question_id }) => (
-        <BookmarkCard
-          questionId={question_id}
-          key={question_id}
-          handleBookmarkClick={handleClick}
-        />
-      ))}
-    </div>
+    <>
+      {allBookmarkedData?.length ? (
+        <div className="pt-20 pb-10 space-y-5">
+          {allBookmarkedData.map(({ question_id }) => (
+            <BookmarkCard
+              questionId={question_id}
+              key={question_id}
+              handleBookmarkClick={handleClick}
+            />
+          ))}
+        </div>
+      ) : (
+        <Layout>
+          <FolderX className="w-12 h-12 text-[#272c34] mx-auto" />
+          <p className="text-[#9aa4b2] font-mono">
+            No questions bookmarked yet. Bookmark a question to view it here.
+          </p>
+        </Layout>
+      )}
+    </>
   );
 };
 

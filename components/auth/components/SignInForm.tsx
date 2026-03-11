@@ -1,20 +1,22 @@
 "use client";
 
 import Input from "@/components/common/Input";
-import { ArrowRight, Lock, Mail, User } from "lucide-react";
+import { ArrowRight, Lock, Mail, User, Loader } from "lucide-react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useSignIn, useSignUp } from "@clerk/nextjs";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const AuthForm = ({ isLogin = false }) => {
-  const { isLoaded, signUp, setActive } = useSignUp();
+  const { isLoaded: isLoadingSignUp, signUp, setActive } = useSignUp();
   const { signIn, setActive: signInSetActive } = useSignIn();
   const router = useRouter();
 
   const [codeSent, setCodeSent] = useState(false);
   const [otp, setOtp] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const signUpSchema = Yup.object({
     name: Yup.string().min(2, "Too short").required("Name is required"),
@@ -28,7 +30,8 @@ const AuthForm = ({ isLogin = false }) => {
   });
 
   const handleSubmit = async (values: any) => {
-    if (!isLoaded) return;
+    if (!isLoadingSignUp) return;
+    setLoading(true);
 
     try {
       await signUp.create({
@@ -41,14 +44,20 @@ const AuthForm = ({ isLogin = false }) => {
         strategy: "email_code",
       });
 
+      toast.success(
+        "Verification code sent successfully! Please check your email.",
+      );
       setCodeSent(true);
     } catch (err) {
-      console.log(err);
+      toast.error("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const verifyOtp = async () => {
-    if (!isLoaded) return;
+    if (!isLoadingSignUp) return;
+    setLoading(true);
 
     try {
       const completeSignUp = await signUp.attemptEmailAddressVerification({
@@ -56,16 +65,23 @@ const AuthForm = ({ isLogin = false }) => {
       });
 
       if (completeSignUp.status === "complete") {
+        toast.success("Verification successful! Welcome!");
         router.push("/");
         await setActive({ session: completeSignUp.createdSessionId });
+      } else {
+        toast.error("Verification failed. Please try again.");
       }
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleLogin = async (values: any) => {
     if (!signIn) return;
+    setLoading(true);
+
     try {
       const result = await signIn?.create({
         identifier: values.email,
@@ -73,11 +89,16 @@ const AuthForm = ({ isLogin = false }) => {
       });
 
       if (result?.status === "complete") {
+        toast.success("Login successful!");
         await signInSetActive({ session: result.createdSessionId });
         router.push("/");
+      } else {
+        toast.error("Login failed. Please check your credentials.");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -153,8 +174,16 @@ const AuthForm = ({ isLogin = false }) => {
             <button
               type="submit"
               className="px-6 py-3 w-full bg-[#31c47f] rounded-xl text-black font-bold flex justify-center items-center gap-2"
+              disabled={loading}
             >
-              <span>Send Code</span>
+              {loading ? (
+                <>
+                  <Loader className="animate-spin w-5 h-5 text-white" />
+                  <span className="ml-2">Loading...</span>
+                </>
+              ) : (
+                <span>Send Code</span>
+              )}
               <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
@@ -162,8 +191,16 @@ const AuthForm = ({ isLogin = false }) => {
               type="button"
               onClick={isLogin ? () => handleLogin(values) : verifyOtp}
               className="px-6 py-3 w-full bg-[#31c47f] rounded-xl text-black font-bold flex justify-center items-center gap-2"
+              disabled={loading}
             >
-              <span>{isLogin ? "Sign In" : "Verify & Sign Up"}</span>
+              {loading ? (
+                <>
+                  <Loader className="animate-spin w-5 h-5 text-white" />
+                  <span className="ml-2">Loading...</span>
+                </>
+              ) : (
+                <span>{isLogin ? "Sign In" : "Verify & Sign Up"}</span>
+              )}
               <ArrowRight className="w-4 h-4" />
             </button>
           )}
