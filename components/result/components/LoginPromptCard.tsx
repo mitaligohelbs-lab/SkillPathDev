@@ -1,8 +1,8 @@
 "use client";
 
-import { LOGIN_PROMPT } from "@/constant";
-import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { useRouter } from "next/navigation";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+import { LOGIN_PROMPT } from "@/constant";
 
 const LoginPromptCard = () => {
   const { userId } = useCurrentUser();

@@ -1,6 +1,7 @@
 "use client";
 
-import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
+import { useEffect } from "react";
+
 import { supabase } from "@/lib/supabase";
 import {
   FormControl,
@@ -9,7 +10,8 @@ import {
   Select,
   Stack,
 } from "@mui/material";
-import { useEffect } from "react";
+
+import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
 
 const SearchBar = ({
   setLeaderBoardData,

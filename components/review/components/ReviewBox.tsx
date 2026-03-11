@@ -1,6 +1,6 @@
-import DisplayOption from "@/components/common/DisplayOption";
-import { Box } from "@mui/material";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { Box } from "@mui/material";
+import DisplayOption from "@/components/common/DisplayOption";
 
 const ReviewBox = ({ question, questionNumber }: any) => {
   const isCorrect = question.correct_answer === question.userAnswer;

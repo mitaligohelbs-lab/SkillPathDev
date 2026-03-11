@@ -1,14 +1,19 @@
 "use client";
 
-import Layout from "../common/Layout";
+import { useEffect } from "react";
+
+import { useAppSelector } from "@/lib/hook";
+import { supabase } from "@/lib/supabase";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
 import ActionButton from "./components/ActionButton";
 import ResultHeader from "./components/ResultHeader";
-import { useAppSelector } from "@/lib/hook";
-import { useEffect } from "react";
-import { supabase } from "@/lib/supabase";
-import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
 import LeaderBoard from "../leaderboard/LeaderBoard";
-import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
+import Layout from "../common/Layout";
+
+import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
+
 
 const Result = () => {
   const { userId, fullName } = useCurrentUser();

@@ -1,15 +1,17 @@
 "use client";
 
-import CommonActionButton from "@/components/common/CommonActionButton";
+import { useRouter } from "next/navigation";
+
+import { persistor } from "@/lib/store";
+import { useAppDispatch, useAppSelector } from "@/lib/hook";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
 import { saveProgress } from "@/lib/features/progressSlice";
 import { reset } from "@/lib/features/QuizSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hook";
-import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
-import { persistor } from "@/lib/store";
+
+import CommonActionButton from "@/components/common/CommonActionButton";
 
 import { ArrowRight, BarChart3, RotateCcw, Eye } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 const ActionButton = () => {
   const { userId } = useCurrentUser();

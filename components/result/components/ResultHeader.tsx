@@ -1,8 +1,9 @@
 "use client";
-import FeatureCard from "@/components/common/FeatureCard";
-import { useAppSelector } from "@/lib/hook";
+
 import { CheckCircle2, Trophy, XCircle } from "lucide-react";
+import { useAppSelector } from "@/lib/hook";
 import LoginPromptCard from "./LoginPromptCard";
+import FeatureCard from "@/components/common/FeatureCard";
 
 const ResultHeader = () => {
   const { topic, level, correct } = useAppSelector((state) => state.quiz);

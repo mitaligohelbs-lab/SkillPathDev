@@ -1,8 +1,8 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 import Header from "./Header";
-import { useParams } from "next/navigation";
 
 const SetupHeader = () => {
   const { technology, topic } = useParams();

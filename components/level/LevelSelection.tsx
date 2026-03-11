@@ -1,5 +1,5 @@
-import Layout from "../common/Layout";
 import Header from "./components/Header";
+import Layout from "../common/Layout";
 import LevelList from "./components/LevelList";
 
 const LevelSelection = () => (

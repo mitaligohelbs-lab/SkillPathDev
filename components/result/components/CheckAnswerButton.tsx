@@ -1,9 +1,11 @@
 "use client";
 
-import { chckAnswerProps } from "@/components/types/mcqTypes";
+import { useParams, useRouter } from "next/navigation";
+
 import { isSubmitted } from "@/lib/features/QuizSlice";
 import { useAppDispatch } from "@/lib/hook";
-import { useParams, useRouter } from "next/navigation";
+
+import { chckAnswerProps } from "@/components/types/mcqTypes";
 
 const CheckAnswerButton = ({
   disabled,

@@ -1,10 +1,12 @@
 "use client";
 
-import { TECHNOLOGIES } from "@/constant";
-import { Box, Grid, Stack } from "@mui/material";
-import { Lock, ChevronRight } from "lucide-react";
-import Card from "@/components/common/Card";
 import Link from "next/link";
+
+import { Lock, ChevronRight } from "lucide-react";
+import { Box, Grid, Stack } from "@mui/material";
+
+import { TECHNOLOGIES } from "@/constant";
+import Card from "@/components/common/Card";
 
 const TechStack = () => {
   return (

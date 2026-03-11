@@ -1,6 +1,6 @@
 import Header from "./components/Header";
-import TechStack from "./components/TechStack";
 import Layout from "../common/Layout";
+import TechStack from "./components/TechStack";
 
 const SelectTechnology = () => (
   <Layout>

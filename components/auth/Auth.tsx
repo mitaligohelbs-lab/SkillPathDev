@@ -1,7 +1,7 @@
-import { Code2 } from "lucide-react";
-
-import { Stack } from "@mui/material";
 import Link from "next/link";
+
+import { Code2 } from "lucide-react";
+import { Stack } from "@mui/material";
 
 import Layout from "../common/Layout";
 import AuthForm from "./components/SignInForm";

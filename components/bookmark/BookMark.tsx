@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { bookmarkProps } from "../types/mcqTypes";
-import { supabase } from "@/lib/supabase";
-import BookmarkCard from "./components/BookmarkCard";
-import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
 import { FolderX } from "lucide-react";
+
+import { supabase } from "@/lib/supabase";
+import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
+
+import BookmarkCard from "./components/BookmarkCard";
 import Layout from "../common/Layout";
+
+import { bookmarkProps } from "../types/mcqTypes";
 
 const BookMark = () => {
   const { userId } = useCurrentUser();

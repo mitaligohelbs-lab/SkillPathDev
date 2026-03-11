@@ -1,8 +1,8 @@
 "use client";
 
+import { useParams } from "next/navigation";
 import { useAppSelector } from "@/lib/hook";
 import Header from "./Header";
-import { useParams } from "next/navigation";
 
 const PreparationHeader = () => {
   const quizData = useAppSelector((state) => state.quiz);

@@ -1,15 +1,18 @@
 "use client";
 
-import DisplayOption from "@/components/common/DisplayOption";
-import CheckAnswerButton from "@/components/result/components/CheckAnswerButton";
-import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
+import { useEffect, useState } from "react";
+
+import { Star, StarOff } from "lucide-react";
+import { Box, Stack, Typography } from "@mui/material";
+
 import { addUserAnswer } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
 import { useAppDispatch } from "@/lib/hook";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { supabase } from "@/lib/supabase";
-import { Box, Stack, Typography } from "@mui/material";
-import { Star, StarOff } from "lucide-react";
-import { useEffect, useState } from "react";
+
+import DisplayOption from "@/components/common/DisplayOption";
+import CheckAnswerButton from "@/components/result/components/CheckAnswerButton";
+import { bookmarkProps, MCQDisplayProps } from "@/components/types/mcqTypes";
 
 const MCQDisplay = ({
   question,
