@@ -1,36 +1,215 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SkillPathDev
 
-## Getting Started
+SkillPathDev is a developer interview preparation platform designed to help developers practice **technology-wise, topic-wise, and level-wise questions** in a structured way.
 
-First, run the development server:
+The platform helps developers improve their technical knowledge, track learning progress, and compare performance with other developers through analytics and leaderboard features.
+
+SkillPathDev aims to make interview preparation **structured, measurable, and competitive**.
+
+---
+
+## Live Platform
+
+The platform is deployed and accessible at:
+
+**Live Demo**  
+https://skillpathdev.vercel.app/
+
+---
+
+## Features
+
+### Structured Learning
+
+Practice interview questions based on:
+
+- Technology
+- Topic
+- Difficulty Level
+
+This structured approach allows developers to focus on specific areas required for technical interviews.
+
+---
+
+### Authentication
+
+Authentication is handled using **Clerk**, which provides secure and scalable user authentication.
+
+---
+
+### Logged-in User Features
+
+After signing in, users can access additional features:
+
+- Bookmark questions for later review
+- Compete with other developers on the leaderboard
+- Track analytics and learning progress
+- View ranking among other developers
+
+---
+
+## Core Functionalities
+
+- Technology-based question filtering  
+- Topic-based question selection  
+- Level-based difficulty system  
+- Bookmark system for saving questions  
+- Leaderboard ranking system  
+- Analytics dashboard for tracking user progress  
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Material UI
+- Recharts
+- Lucide
+
+### State Management
+
+- Redux Toolkit
+- React Redux
+- Redux Persist
+
+### Forms & Validation
+
+- Formik
+- Yup
+
+### Backend / Database
+
+- Supabase
+
+### Deployment
+
+- Vercel
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/mitali2003/skillpathdev.git
+```
+
+### 2. Navigate into the project directory
+
+```bash
+cd skillpathdev
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory and add the following variables:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_key
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+```
+
+---
+
+## Run the Project Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will run at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Repository Access Policy
 
-To learn more about Next.js, take a look at the following resources:
+The source code for **SkillPathDev** is currently **private**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is part of an actively developing platform and therefore the repository is not publicly accessible.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you are interested in:
 
-## Deploy on Vercel
+- Reviewing the code
+- Learning about the architecture
+- Collaborating
+- Providing technical feedback
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You may request **read-only access**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Access will be granted after verification.
+
+### Important Notes
+
+- Repository access will be **view-only**
+- **Merge permissions will not be granted**
+- Code redistribution or reuse is **not permitted without permission**
+
+---
+
+## Request Repository Access or Share Ideas
+
+If you would like to review the code or collaborate, please send an email with:
+
+- Your Name  
+- Subject: **SkillPathDev Code Access Request**  
+- Purpose of access  
+
+**Email:**  
+mitaligohel09@gmail.com
+
+If you have any ideas, suggestions, or improvements for the platform, feel free to contact using the above contact details.
+
+---
+
+## Upcoming Features (Currently in Development)
+
+The following features are currently being developed and will be added in future updates:
+
+### Level Completion Certificates
+
+Users will be able to generate certificates after completing specific levels.
+
+### Score Sharing
+
+Users will be able to share their results directly on platforms such as:
+
+- LinkedIn
+- WhatsApp
+- Twitter
+
+### Challenge Friends
+
+Users will be able to challenge their friends to solve the same question sets and compare scores.
+
+### AI-Based Learning Analysis
+
+AI will analyze user performance and identify weaker topics, helping users focus on areas that need improvement.
+
+---
+
+## License
+
+All Rights Reserved.
+
+The source code of this project is not permitted for copying, redistribution, or commercial use without permission from the author.
