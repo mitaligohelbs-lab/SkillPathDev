@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { useRouter } from "next/navigation";
 
 import { toast } from "react-toastify";
@@ -52,8 +51,8 @@ const AuthForm = ({ isLogin = false }) => {
         "Verification code sent successfully! Please check your email.",
       );
       setCodeSent(true);
-    } catch (err) {
-      toast.error("An unexpected error occurred. Please try again.");
+    } catch {
+      toast.error("An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
@@ -69,14 +68,14 @@ const AuthForm = ({ isLogin = false }) => {
       });
 
       if (completeSignUp.status === "complete") {
-        toast.success("Verification successful! Welcome!");
-        router.push("/");
+        toast.success("Verification successful!");
         await setActive({ session: completeSignUp.createdSessionId });
+        router.push("/");
       } else {
-        toast.error("Verification failed. Please try again.");
+        toast.error("Verification failed.");
       }
-    } catch (err) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -87,20 +86,20 @@ const AuthForm = ({ isLogin = false }) => {
     setLoading(true);
 
     try {
-      const result = await signIn?.create({
+      const result = await signIn.create({
         identifier: values.email,
         password: values.password,
       });
 
-      if (result?.status === "complete") {
+      if (result.status === "complete") {
         toast.success("Login successful!");
         await signInSetActive({ session: result.createdSessionId });
         router.push("/");
       } else {
-        toast.error("Login failed. Please check your credentials.");
+        toast.error("Login failed.");
       }
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch {
+      toast.error("Something went wrong.");
     } finally {
       setLoading(false);
     }
@@ -120,10 +119,13 @@ const AuthForm = ({ isLogin = false }) => {
         handleBlur,
         handleSubmit,
       }) => (
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-md mx-auto space-y-3 sm:space-y-4"
+        >
           {!isLogin && !codeSent && (
             <Input
-              icon={<User />}
+              icon={<User className="w-4 h-4 sm:w-5 sm:h-5" />}
               placeholder="Display name"
               isRequired
               type="text"
@@ -137,7 +139,7 @@ const AuthForm = ({ isLogin = false }) => {
 
           {!codeSent && (
             <Input
-              icon={<Mail />}
+              icon={<Mail className="w-4 h-4 sm:w-5 sm:h-5" />}
               placeholder="Email"
               isRequired
               type="email"
@@ -151,7 +153,7 @@ const AuthForm = ({ isLogin = false }) => {
 
           {!codeSent && (
             <Input
-              icon={<Lock />}
+              icon={<Lock className="w-4 h-4 sm:w-5 sm:h-5" />}
               placeholder="Password"
               isRequired
               type="password"
@@ -165,7 +167,7 @@ const AuthForm = ({ isLogin = false }) => {
 
           {codeSent && (
             <Input
-              icon={<Mail />}
+              icon={<Mail className="w-4 h-4 sm:w-5 sm:h-5" />}
               placeholder="Enter verification code"
               type="text"
               name="otp"
@@ -177,35 +179,49 @@ const AuthForm = ({ isLogin = false }) => {
           {!codeSent && !isLogin ? (
             <button
               type="submit"
-              className="px-6 py-3 w-full bg-[#31c47f] rounded-xl text-black font-bold flex justify-center items-center gap-2"
               disabled={loading}
+              className="w-full flex items-center justify-center gap-2
+              py-2.5 sm:py-3
+              text-sm sm:text-base
+              bg-[#31c47f] text-black
+              font-bold rounded-xl
+              transition hover:opacity-90 disabled:opacity-60"
             >
               {loading ? (
                 <>
-                  <Loader className="animate-spin w-5 h-5 text-white" />
-                  <span className="ml-2">Loading...</span>
+                  <Loader className="animate-spin w-4 h-4 sm:w-5 sm:h-5" />
+                  Loading...
                 </>
               ) : (
-                <span>Send Code</span>
+                <>
+                  Send Code
+                  <ArrowRight className="w-4 h-4" />
+                </>
               )}
-              <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <button
               type="button"
               onClick={isLogin ? () => handleLogin(values) : verifyOtp}
-              className="px-6 py-3 w-full bg-[#31c47f] rounded-xl text-black font-bold flex justify-center items-center gap-2"
               disabled={loading}
+              className="w-full flex items-center justify-center gap-2
+              py-2.5 sm:py-3
+              text-sm sm:text-base
+              bg-[#31c47f] text-black
+              font-bold rounded-xl
+              transition hover:opacity-90 disabled:opacity-60"
             >
               {loading ? (
                 <>
-                  <Loader className="animate-spin w-5 h-5 text-white" />
-                  <span className="ml-2">Loading...</span>
+                  <Loader className="animate-spin w-4 h-4 sm:w-5 sm:h-5" />
+                  Loading...
                 </>
               ) : (
-                <span>{isLogin ? "Sign In" : "Verify & Sign Up"}</span>
+                <>
+                  {isLogin ? "Sign In" : "Verify & Sign Up"}
+                  <ArrowRight className="w-4 h-4" />
+                </>
               )}
-              <ArrowRight className="w-4 h-4" />
             </button>
           )}
         </form>

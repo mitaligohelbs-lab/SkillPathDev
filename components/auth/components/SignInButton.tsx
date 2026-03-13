@@ -12,9 +12,9 @@ const SignInButton = () => {
           Sign In
         </Link>
       </div>
-      <div className="block md:hidden w-5 h-5 text-[#707d8f]">
+      <Link className="block md:hidden w-5 h-5 text-[#707d8f]" href="/signIn">
         <LogIn />
-      </div>
+      </Link>
     </div>
   );
 };
