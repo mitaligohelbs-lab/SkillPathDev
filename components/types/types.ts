@@ -24,6 +24,7 @@ export type MainHeaderTypes = {
   text: string;
   subText?: string;
   isDisplay?: boolean;
+  className?: string;
 };
 
 export type featureCardTypes = {

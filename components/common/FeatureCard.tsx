@@ -10,12 +10,14 @@ const FeatureCard = ({
 }: featureCardTypes) => {
   return (
     <div
-      className={`flex flex-col justify-center gap-2  w-full border items-center border-[#272b35] rounded-xl p-5 ${bgColor}`}
+      className={`flex flex-col justify-center gap-2  w-full border items-center border-[#272b35] rounded-xl p-2 md:p-5 ${bgColor}`}
       key={title}
     >
-      <div className="text-[#31C47F]">{icon}</div>
-      <div className={`font-bold ${textColor}`}>{title}</div>
-      <div className={`text-[#707D8F] ${descriptionFont}`}>{desc}</div>
+      <div className="text-[#31C47F] text-center">{icon}</div>
+      <div className={`font-bold ${textColor} text-center`}>{title}</div>
+      <div className={`text-[#707D8F] text-center ${descriptionFont}`}>
+        {desc}
+      </div>
     </div>
   );
 };

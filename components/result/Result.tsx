@@ -14,7 +14,6 @@ import Layout from "../common/Layout";
 
 import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
 
-
 const Result = () => {
   const { userId, fullName } = useCurrentUser();
 
@@ -110,7 +109,7 @@ const Result = () => {
   }, [technology, topic, userId, correct, level]);
 
   return (
-    <Layout>
+    <Layout className="px-5 md:px-0">
       <div className="w-full space-y-3 pt-20 pb-10">
         <ResultHeader />
         {userId && <LeaderBoard isDisplay={false} />}

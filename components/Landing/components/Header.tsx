@@ -3,7 +3,7 @@ import { Box, Stack } from "@mui/material";
 
 const Header = () => {
   return (
-    <Stack gap={2}>
+    <Stack gap={2} pt={{ xs: 15, md: 0 }}>
       <Box
         border="1px solid rgba(49, 196, 127, 0.3)"
         display={"flex"}

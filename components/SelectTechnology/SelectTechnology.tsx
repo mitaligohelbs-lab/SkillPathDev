@@ -3,7 +3,7 @@ import Layout from "../common/Layout";
 import TechStack from "./components/TechStack";
 
 const SelectTechnology = () => (
-  <Layout>
+  <Layout className="px-5 md:px-0">
     <Header />
     <TechStack />
   </Layout>

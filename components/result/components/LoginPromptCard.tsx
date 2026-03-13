@@ -10,7 +10,7 @@ const LoginPromptCard = () => {
   return (
     <div>
       {!userId && (
-        <div className="p-6 rounded-xl border border-[#272b35] bg-[#15181e] space-y-3">
+        <div className="p-3 md:p-6 rounded-xl border border-[#272b35] bg-[#15181e] space-y-3">
           <h3 className="font-semibold text-lg text-foreground flex items-center gap-2">
             🔐 Unlock More Features
           </h3>

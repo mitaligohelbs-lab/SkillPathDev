@@ -4,7 +4,7 @@ import Layout from "../common/Layout";
 import StartPracticingButton from "./components/StartPracticingButton";
 
 const Landing = () => (
-  <Layout isCard={false}>
+  <Layout isCard={false} className="p-5">
     <Header />
     <StartPracticingButton />
     <Feature />
