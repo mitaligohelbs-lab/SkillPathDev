@@ -32,14 +32,20 @@ const BookmarkCard = ({
   }, [questionId]);
 
   return (
-    <div className="flex flex-col gap-2 space-y-2 mx-auto max-w-2xl overflow-y-auto">
-      <div className="p-5 border border-[#272c34] bg-[#15181e] rounded-xl">
+    <div className="flex flex-col gap-2 space-y-2 mx-auto max-w-2xl  px-4 md:px-20 flex-wrap">
+      <div className="p-2 md:p-5 border border-[#272c34] bg-[#15181e] rounded-xl">
         <div className="text-[#707d8f] text-sm">
           {questionInfo?.technology} . {questionInfo?.topic}.{" "}
           {questionInfo?.level}
         </div>
         <div className="flex justify-between items-center py-1">
-          <pre className="text-sm">{questionInfo?.question}</pre>
+          <pre
+            className="rounded-xl text-xs sm:text-sm md:text-base 
+      whitespace-pre-wrap wrap-break-word
+      overflow-x-auto text-white text-start"
+          >
+            {questionInfo?.question}
+          </pre>
           <button
             className="p-2 rounded-lg transition-colors cursor-pointer"
             onClick={() => handleBookmarkClick(questionId)}

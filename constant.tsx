@@ -1,4 +1,11 @@
-import { Code2, Target, TrendingUp } from "lucide-react";
+import {
+  BarChart3,
+  Code2,
+  Star,
+  Target,
+  TrendingUp,
+  Trophy,
+} from "lucide-react";
 
 export const ALL_FEATURE = [
   {
@@ -114,5 +121,20 @@ export const LOGIN_PROMPT = [
   {
     text: "See your rank among other devs",
     icon: "🎯",
+  },
+];
+
+export const HEADER_LINKS = [
+  {
+    icon: <BarChart3 className="w-5 h-5 text-[#707d8f]" />,
+    to: "/analysis",
+  },
+  {
+    icon: <Star className="w-5 h-5 text-[#707d8f]" />,
+    to: "/bookmark",
+  },
+  {
+    icon: <Trophy className="w-5 h-5 text-[#707d8f]" />,
+    to: "/leaderboard",
   },
 ];

@@ -33,10 +33,10 @@ const DisplayName = ({
 
   return (
     <div
-      className={`${isDisplay ? "mt-6" : "mt-0"} max-w-2xl w-full ${isDisplay ? "px-5" : "px-0"} ${!isDisplay ? "bg-[#22272f] border border-[#272b35] px-6 py-8 rounded-xl" : ""}`}
+      className={`${isDisplay ? "mt-2  md:mt-6" : "mt-0"} max-w-2xl w-full ${isDisplay ? "px-1 md:px-5" : "px-0"} ${!isDisplay ? "bg-[#22272f] border border-[#272b35] px-2 md:px-6 py-2 md:py-8 rounded-xl" : ""}`}
     >
       {isDisplay && displatTechnology && displayTopic && selectedLevel && (
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
           <h2 className="font-mono font-bold text-lg text-[#e7ebef]">
             {displatTechnology}-{displayTopic} · Level {selectedLevel}
           </h2>
@@ -52,7 +52,7 @@ const DisplayName = ({
       {!isDisplay && <MiniLeaderBoard />}
 
       {data.length > 0 && (
-        <div className="grid grid-cols-[2.5rem_1fr_3rem_4rem] gap-3 px-4 text-sm text-[#707d8f] font-mono uppercase tracking-wider mt-5">
+        <div className="grid grid-cols-[2.5rem_1fr_3rem] gap-3 px-4 text-sm text-[#707d8f] font-mono uppercase tracking-wider mt-5">
           <span>Rank</span>
           <span>Name</span>
           <span className="text-right">Score</span>
@@ -76,7 +76,7 @@ const DisplayName = ({
           {data.map((entry: any, idx: number) => (
             <div
               key={entry.user_id}
-              className={`grid grid-cols-[2.5rem_1fr_3rem_4rem] gap-3 items-center p-4 rounded-xl border transition-all ${
+              className={`grid grid-cols-[2.5rem_1fr_3rem] gap-3 items-center p-4 rounded-xl border transition-all ${
                 entry.user_id === userId
                   ? "border-[#31c47fdd] bg-[#31c47d0d]"
                   : idx === 0

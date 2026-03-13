@@ -49,7 +49,7 @@ const LeaderBoard = ({ isDisplay = true }) => {
 
   return (
     <div
-      className={`${isDisplay ? "pt-30" : "pt-5"} flex flex-col justify-center items-center gap-4`}
+      className={`${isDisplay ? "pt-30" : "pt-5"} flex flex-col justify-center items-center gap-4 px-5 md:px-0`}
     >
       {isDisplay && (
         <SearchBar

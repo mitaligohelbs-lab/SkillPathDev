@@ -90,6 +90,7 @@ const LevelList = () => {
       justifyContent={"center"}
       alignItems={"center"}
       spacing={2}
+      padding={{ xs: 2, sm: 0 }}
       className="overflow-auto w-full"
     >
       {levelWithProgress.map(
@@ -119,7 +120,7 @@ const LevelList = () => {
               >
                 <Grid className="flex gap-2 justify-between items-center">
                   <Grid className="flex gap-3">
-                    <Box className="text-2xl w-12 flex justify-center text-[#d1d9e0] items-center h-12 bg-[#22272f] rounded-xl">
+                    <Box className="text-md md:text-2xl w-10 md:w-12 h-8 md:h-12 flex justify-center text-[#d1d9e0] items-center  bg-[#22272f] rounded-xl">
                       {levelWiseScore ? (
                         <CheckCircle2 className="w-6 h-6 text-[#31c47f]" />
                       ) : (

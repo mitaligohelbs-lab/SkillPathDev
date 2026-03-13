@@ -88,10 +88,10 @@ const MCQDisplay = ({
   };
 
   return (
-    <Stack>
+    <Stack px={{ xs: 3, md: 0 }} py={{ xs: 4, md: 0 }}>
       <Typography variant="h5">
         <div className="flex justify-between w-full">
-          <pre className="p-6 rounded-xl w-full text-[18px] whitespace-pre-wrap wrap-break-words">
+          <pre className="p-2 md:p-6 rounded-xl w-full text-sm md:text-base whitespace-pre-wrap wrap-break-words">
             {`${currQuestionNumber} ${question.question}`}
           </pre>
           {userId && (

@@ -15,7 +15,7 @@ const SetupHeader = () => {
   const headerText = currTopicName ?? currTechnologyName ?? "SkillPathDev";
 
   return (
-    <div className="flex border-b px-6 py-4 items-center gap-3 border-[#272c3480]">
+    <div className="flex border-b px-1 md:px-6 py-4 items-center gap-3 border-[#272c3480]">
       <Header text={headerText} />
     </div>
   );
