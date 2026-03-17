@@ -79,14 +79,26 @@ const ShareScoreModal = ({
     technology: supabaseTechnology = "",
   } = cuurrentDetails || {};
 
-  const accuracy = ((score || correct) * 100) / 10;
+  const finalTopic = useMemo(
+    () => supabaseTopic || topic,
+    [supabaseTopic, topic],
+  );
 
-  const shareTitle = `🏆 I scored ${score || correct}/${10} (${accuracy}%) on  ${supabaseTopic || topic} Level ${level}! — via SkillPathDev`;
+  const finalScore = useMemo(() => score || correct, [score, correct]);
+
+  const finalTechnology = useMemo(
+    () => supabaseTechnology || technology,
+    [supabaseTechnology, technology],
+  );
+
+  const accuracy = (finalScore * 100) / 10;
+
+  const shareTitle = `🏆 I scored ${finalScore}/${10} (${accuracy}%) on  ${finalTopic} Level ${level}! — via SkillPathDev`;
   const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/share/${id}`;
   const siteUrl = window.location.origin;
-  const challengeTitle = `🎯 Think you can beat my ${score || correct}/${10} on ${supabaseTopic || topic} Level ${level}? Take the challenge on SkillPathDev!`;
+  const challengeTitle = `🎯 Think you can beat my ${finalScore}/${10} on ${finalTopic} Level ${level}? Take the challenge on SkillPathDev!`;
   const challengeDescription = `💪 Take the challenge: ${window.location.origin}\n🏆 Leaderboard: ${window.location.origin}/leaderboard`;
-  const challengeUrl = `${siteUrl}/mcq/${supabaseTechnology || technology}/${topic || supabaseTopic}/${level}`;
+  const challengeUrl = `${siteUrl}/mcq/${finalTechnology}/${finalTopic}/${level}`;
   const leaderboardUrl = `${siteUrl}/leaderboard`;
 
   const finaltext = useMemo(
@@ -127,12 +139,12 @@ const ShareScoreModal = ({
         />
 
         <ModalBody
-          topic={supabaseTopic || topic}
+          topic={finalTopic}
           level={level}
           isDisplayChallengeModal={isDisplayChallengeModal}
           challengeUrl={challengeUrl}
           leaderboardUrl={leaderboardUrl}
-          score={score || correct}
+          score={finalScore}
         />
 
         <ModalShareIcon
