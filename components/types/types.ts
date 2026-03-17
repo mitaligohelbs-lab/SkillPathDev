@@ -55,3 +55,4 @@ export type InputTypes = {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   error?: string;
 };
+
