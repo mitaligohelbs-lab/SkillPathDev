@@ -28,18 +28,17 @@ const LevelList = () => {
   const technology = params.technology as string;
   const topic = params.topic as string;
 
-  const currTechnologyName = TECHNOLOGIES.find(
-    ({ id }) => id === technology,
-  )?.name;
+  const currTechnologyName =
+    TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
+  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
 
   const checkUser = async () => {
     const { data: existingUser, error } = await supabase
       .from("user_scores")
       .select("*")
       .eq("user_id", userId)
-      .eq("technology", currTechnologyName || technology)
+      .eq("technology", currTechnologyName)
       .eq("topic", currTopicName || topic);
 
     setCurrentUserData(existingUser);
@@ -56,8 +55,8 @@ const LevelList = () => {
         .from("user_scores")
         .select("*")
         .eq("user_id", userId)
-        .eq("technology", currTechnologyName || technology)
-        .eq("topic", currTopicName || topic);
+        .eq("technology", currTechnologyName)
+        .eq("topic", currTopicName);
 
       if (data && data.length === 3) {
         setIsDisplayCertificate(true);
@@ -66,21 +65,13 @@ const LevelList = () => {
   };
 
   useEffect(() => {
-    if (
-      userId &&
-      (currTechnologyName || technology) &&
-      (currTopicName || topic)
-    ) {
+    if (userId && currTechnologyName && currTopicName) {
       fetchDetails();
     }
   }, [userId, currTechnologyName, technology, currTopicName, topic]);
 
   useEffect(() => {
-    if (
-      userId &&
-      (currTechnologyName || technology) &&
-      (currTopicName || topic)
-    ) {
+    if (userId && currTechnologyName && currTopicName) {
       checkUser();
     }
   }, [userId, currTechnologyName, technology, currTopicName, topic]);
@@ -188,8 +179,8 @@ const LevelList = () => {
       )}
       {isDisplayCertificate && (
         <GetCertificateButton
-          topic={currTopicName || topic}
-          technology={currTechnologyName || technology}
+          topic={currTopicName}
+          technology={currTechnologyName}
         />
       )}
     </Stack>

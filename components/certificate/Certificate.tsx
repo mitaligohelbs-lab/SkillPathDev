@@ -19,11 +19,10 @@ export default function Certificate() {
 
   const { fullName, userId } = useCurrentUser();
 
-  const currTechnologyName = TECHNOLOGIES.find(
-    ({ id }) => id === technology,
-  )?.name;
+  const currTechnologyName =
+    TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
+  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
 
   const fetchDetails = async () => {
     try {
@@ -31,8 +30,8 @@ export default function Certificate() {
         .from("user_scores")
         .select("*")
         .eq("user_id", userId)
-        .eq("technology", currTechnologyName || technology)
-        .eq("topic", currTopicName || topic);
+        .eq("technology", currTechnologyName)
+        .eq("topic", currTopicName);
 
       const formattedData = data?.map(({ level, score }) => ({
         level,
@@ -46,11 +45,7 @@ export default function Certificate() {
   };
 
   useEffect(() => {
-    if (
-      userId &&
-      (currTechnologyName || technology) &&
-      (currTopicName || topic)
-    ) {
+    if (userId && currTechnologyName && currTopicName) {
       fetchDetails();
     }
   }, [userId, currTechnologyName, technology, currTopicName, topic]);
