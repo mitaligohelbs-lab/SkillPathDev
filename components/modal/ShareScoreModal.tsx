@@ -11,10 +11,10 @@ import { Box, Modal } from "@mui/material";
 import { Check, Copy } from "lucide-react";
 
 import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
-import { ShareModalTypes } from "../types/types";
 import ModalHeader from "./components/ModalHeader";
 import ModalShareIcon from "./components/ModalShareIcon";
 import ModalBody from "./components/ModalBody";
+import { ShareModalTypes } from "./types/ModalTypes";
 
 const ShareScoreModal = ({
   open,

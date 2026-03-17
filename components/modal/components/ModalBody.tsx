@@ -1,4 +1,4 @@
-import { ModalBodyTypes } from "@/components/types/types";
+import { ModalBodyTypes } from "../types/ModalTypes";
 
 const ModalBody = ({
   topic,

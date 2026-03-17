@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export type ShareModalTypes = {
   open: boolean;
-  handleClose: () => {};
+  handleClose: () => void;
   modalHeader: string;
   icon: ReactNode;
   subTitle: string;
@@ -14,7 +14,7 @@ export type ModalHeaderTypes = {
   modalHeader: string;
   icon: ReactNode;
   subTitle: string;
-  handleClose: () => {};
+  handleClose: () => void;
 };
 
 export type ModalIconTypes = {
