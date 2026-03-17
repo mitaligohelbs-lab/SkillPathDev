@@ -15,11 +15,13 @@ import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
 import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
 
 import Card from "@/components/common/Card";
+import GetCertificateButton from "@/components/certificate/GetCertificateButton";
 
 const LevelList = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const { userId } = useCurrentUser();
+  const [isDisplayCertificate, setIsDisplayCertificate] = useState(false);
 
   const [currUserData, setCurrentUserData] = useState<any>(null);
 
@@ -47,6 +49,31 @@ const LevelList = () => {
       return;
     }
   };
+
+  const fetchDetails = async () => {
+    try {
+      const { data } = await supabase
+        .from("user_scores")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("technology", currTechnologyName || technology)
+        .eq("topic", currTopicName || topic);
+
+      if (data && data.length === 3) {
+        setIsDisplayCertificate(true);
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    if (
+      userId &&
+      (currTechnologyName || technology) &&
+      (currTopicName || topic)
+    ) {
+      fetchDetails();
+    }
+  }, [userId, currTechnologyName, technology, currTopicName, topic]);
 
   useEffect(() => {
     if (
@@ -158,6 +185,12 @@ const LevelList = () => {
             </Link>
           );
         },
+      )}
+      {isDisplayCertificate && (
+        <GetCertificateButton
+          topic={currTopicName || topic}
+          technology={currTechnologyName || technology}
+        />
       )}
     </Stack>
   );

@@ -16,7 +16,7 @@ const Share = ({
   const isDisabled = score === 0;
 
   const baseBtn =
-    "flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors";
+    "flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer";
 
   return (
     <>

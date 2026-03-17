@@ -14,6 +14,7 @@ import LeaderBoard from "../leaderboard/LeaderBoard";
 import Layout from "../common/Layout";
 
 import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
+import GetCertificateButton from "../certificate/GetCertificateButton";
 
 const Result = () => {
   const { userId, fullName } = useCurrentUser();
@@ -117,17 +118,25 @@ const Result = () => {
     <Layout className="px-5 md:px-0">
       <div className="w-full space-y-3 pt-20 pb-10">
         <ResultHeader />
-        {userId && <LeaderBoard isDisplay={false} />}
         {userId && (
-          <Share
-            setIsOpenShareModal={setIsOpenShareModal}
-            isOpenShareModal={isOpenShareModal}
-            setIsOpenChallengeModal={setIsOpenChallengeModal}
-            isOpenChallengeModal={isOpenChallengeModal}
-            score={correct}
-          />
+          <>
+            <LeaderBoard isDisplay={false} />
+            <Share
+              setIsOpenShareModal={setIsOpenShareModal}
+              isOpenShareModal={isOpenShareModal}
+              setIsOpenChallengeModal={setIsOpenChallengeModal}
+              isOpenChallengeModal={isOpenChallengeModal}
+              score={correct}
+            />
+          </>
         )}
         <ActionButton />
+        {userId && +level === 3 && (
+          <GetCertificateButton
+            topic={currTopicName}
+            technology={currTechnologyName}
+          />
+        )}
       </div>
     </Layout>
   );
