@@ -26,7 +26,9 @@ const ShareScoreModal = ({
   copyMessage,
 }: ShareModalTypes) => {
   const { userId } = useCurrentUser();
-  const { technology, topic, level } = useAppSelector((state) => state.quiz);
+  const { technology, topic, level, correct } = useAppSelector(
+    (state) => state.quiz,
+  );
 
   const [cuurrentDetails, setCurrentDetails] = useState(null);
   const [copied, setCopied] = useState(false);
@@ -77,14 +79,26 @@ const ShareScoreModal = ({
     technology: supabaseTechnology = "",
   } = cuurrentDetails || {};
 
-  const accuracy = (score * 100) / 10;
+  const finalTopic = useMemo(
+    () => supabaseTopic || topic,
+    [supabaseTopic, topic],
+  );
 
-  const shareTitle = `🏆 I scored ${score}/${10} (${accuracy}%) on  ${supabaseTopic} Level ${level}! — via SkillPathDev`;
+  const finalScore = useMemo(() => score || correct, [score, correct]);
+
+  const finalTechnology = useMemo(
+    () => supabaseTechnology || technology,
+    [supabaseTechnology, technology],
+  );
+
+  const accuracy = (finalScore * 100) / 10;
+
+  const shareTitle = `🏆 I scored ${finalScore}/${10} (${accuracy}%) on  ${finalTopic} Level ${level}! — via SkillPathDev`;
   const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/share/${id}`;
   const siteUrl = window.location.origin;
-  const challengeTitle = `🎯 Think you can beat my ${score}/${10} on ${supabaseTopic} Level ${level}? Take the challenge on SkillPathDev!`;
+  const challengeTitle = `🎯 Think you can beat my ${finalScore}/${10} on ${finalTopic} Level ${level}? Take the challenge on SkillPathDev!`;
   const challengeDescription = `💪 Take the challenge: ${window.location.origin}\n🏆 Leaderboard: ${window.location.origin}/leaderboard`;
-  const challengeUrl = `${siteUrl}/mcq/${supabaseTechnology || technology}/${topic || supabaseTopic}/${level}`;
+  const challengeUrl = `${siteUrl}/mcq/${finalTechnology}/${finalTopic}/${level}`;
   const leaderboardUrl = `${siteUrl}/leaderboard`;
 
   const finaltext = useMemo(
@@ -92,7 +106,7 @@ const ShareScoreModal = ({
       isDisplayChallengeModal
         ? `${challengeTitle}\n\n${challengeDescription}`
         : `${shareTitle}\n\nTest your dev skills 👉 ${siteUrl}`,
-    [isDisplayChallengeModal, score],
+    [isDisplayChallengeModal, score, correct],
   );
 
   return (
@@ -125,12 +139,12 @@ const ShareScoreModal = ({
         />
 
         <ModalBody
-          topic={supabaseTopic}
+          topic={finalTopic}
           level={level}
           isDisplayChallengeModal={isDisplayChallengeModal}
           challengeUrl={challengeUrl}
           leaderboardUrl={leaderboardUrl}
-          score={score}
+          score={finalScore}
         />
 
         <ModalShareIcon

@@ -15,7 +15,7 @@ import OverallAnalysis from "./components/OverallAnalysis";
 import Graph from "./components/Graph";
 import TopicWiseAnalysis from "./components/TopicWiseAnalysis";
 
-import { TopicStats } from "../types/analysis";
+import { TopicStats } from "../types/analysisTypes";
 
 const Analysis = () => {
   const { userId } = useCurrentUser();

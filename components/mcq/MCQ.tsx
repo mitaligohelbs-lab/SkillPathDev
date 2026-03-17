@@ -30,11 +30,10 @@ const MCQ = () => {
   const [allQuestionData, setAllQuestionData] = useState<MCQList[]>([]);
   const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
 
-  const currTechnologyName = TECHNOLOGIES.find(
-    ({ id }) => id === technology,
-  )?.name;
+  const currTechnologyName =
+    TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
+  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
 
   const currentQuestion = allQuestionData.find(
     (_, idx) => idx + 1 === currQuestionNumber,
@@ -45,8 +44,8 @@ const MCQ = () => {
       const { data } = await supabase
         .from("skilldev_mcq")
         .select("*")
-        .eq("technology", currTechnologyName || technology)
-        .eq("topic", currTopicName || topic)
+        .eq("technology", currTechnologyName)
+        .eq("topic", currTopicName)
         .eq("level", `Level ${level}`);
 
       const shuffled = data?.sort(() => 0.5 - Math.random());

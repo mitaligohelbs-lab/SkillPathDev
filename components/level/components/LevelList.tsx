@@ -15,29 +15,30 @@ import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
 import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
 
 import Card from "@/components/common/Card";
+import GetCertificateButton from "@/components/certificate/GetCertificateButton";
 
 const LevelList = () => {
   const dispatch = useAppDispatch();
   const params = useParams();
   const { userId } = useCurrentUser();
+  const [isDisplayCertificate, setIsDisplayCertificate] = useState(false);
 
   const [currUserData, setCurrentUserData] = useState<any>(null);
 
   const technology = params.technology as string;
   const topic = params.topic as string;
 
-  const currTechnologyName = TECHNOLOGIES.find(
-    ({ id }) => id === technology,
-  )?.name;
+  const currTechnologyName =
+    TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name;
+  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
 
   const checkUser = async () => {
     const { data: existingUser, error } = await supabase
       .from("user_scores")
       .select("*")
       .eq("user_id", userId)
-      .eq("technology", currTechnologyName || technology)
+      .eq("technology", currTechnologyName)
       .eq("topic", currTopicName || topic);
 
     setCurrentUserData(existingUser);
@@ -48,12 +49,29 @@ const LevelList = () => {
     }
   };
 
+  const fetchDetails = async () => {
+    try {
+      const { data } = await supabase
+        .from("user_scores")
+        .select("*")
+        .eq("user_id", userId)
+        .eq("technology", currTechnologyName)
+        .eq("topic", currTopicName);
+
+      if (data && data.length === 3) {
+        setIsDisplayCertificate(true);
+      }
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    if (
-      userId &&
-      (currTechnologyName || technology) &&
-      (currTopicName || topic)
-    ) {
+    if (userId && currTechnologyName && currTopicName) {
+      fetchDetails();
+    }
+  }, [userId, currTechnologyName, technology, currTopicName, topic]);
+
+  useEffect(() => {
+    if (userId && currTechnologyName && currTopicName) {
       checkUser();
     }
   }, [userId, currTechnologyName, technology, currTopicName, topic]);
@@ -158,6 +176,12 @@ const LevelList = () => {
             </Link>
           );
         },
+      )}
+      {isDisplayCertificate && (
+        <GetCertificateButton
+          topic={currTopicName}
+          technology={currTechnologyName}
+        />
       )}
     </Stack>
   );
