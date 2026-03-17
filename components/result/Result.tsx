@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useAppSelector } from "@/lib/hook";
 import { supabase } from "@/lib/supabase";
@@ -8,6 +8,7 @@ import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 import ActionButton from "./components/ActionButton";
 import ResultHeader from "./components/ResultHeader";
+import Share from "./components/Share";
 import LeaderBoard from "../leaderboard/LeaderBoard";
 
 import Layout from "../common/Layout";
@@ -16,6 +17,10 @@ import { TECHNOLOGIES, JS_TOPICS } from "@/constant";
 
 const Result = () => {
   const { userId, fullName } = useCurrentUser();
+
+  const [isOpenShareModal, setIsOpenShareModal] = useState<boolean>(false);
+  const [isOpenChallengeModal, setIsOpenChallengeModal] =
+    useState<boolean>(false);
 
   const { technology, topic, correct, level } = useAppSelector(
     (state) => state.quiz,
@@ -113,6 +118,16 @@ const Result = () => {
       <div className="w-full space-y-3 pt-20 pb-10">
         <ResultHeader />
         {userId && <LeaderBoard isDisplay={false} />}
+        {userId && (
+          <Share
+            setIsOpenShareModal={setIsOpenShareModal}
+            isOpenShareModal={isOpenShareModal}
+            userId={userId}
+            fullName={fullName}
+            setIsOpenChallengeModal={setIsOpenChallengeModal}
+            isOpenChallengeModal={isOpenChallengeModal}
+          />
+        )}
         <ActionButton />
       </div>
     </Layout>
