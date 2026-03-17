@@ -56,36 +56,3 @@ export type InputTypes = {
   error?: string;
 };
 
-// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-Modal =-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-export type ShareModalTypes = {
-  open: boolean;
-  handleClose: () => {};
-  modalHeader: string;
-  icon: React.ReactNode;
-  subTitle: string;
-  isDisplayChallengeModal?: boolean;
-  copyMessage: string;
-};
-
-export type ModalHeaderTypes = {
-  modalHeader: string;
-  icon: React.ReactNode;
-  subTitle: string;
-  handleClose: () => {};
-};
-
-export type ModalIconTypes = {
-  shareUrl: string;
-  isDisplayChallengeModal?: boolean;
-  title: string;
-};
-
-export type ModalBodyTypes = {
-  topic: string;
-  level: string | number;
-  isDisplayChallengeModal?: boolean;
-  challengeUrl: string;
-  leaderboardUrl: string;
-  score: string | number;
-};

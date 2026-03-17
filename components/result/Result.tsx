@@ -122,10 +122,9 @@ const Result = () => {
           <Share
             setIsOpenShareModal={setIsOpenShareModal}
             isOpenShareModal={isOpenShareModal}
-            userId={userId}
-            fullName={fullName}
             setIsOpenChallengeModal={setIsOpenChallengeModal}
             isOpenChallengeModal={isOpenChallengeModal}
+            score={correct}
           />
         )}
         <ActionButton />
