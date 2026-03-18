@@ -4,9 +4,5 @@ const layout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => (
-  <div className="min-h-screen flex flex-col grow overflow-y-auto">
-    {children}
-  </div>
-);
+}>) => <div>{children}</div>;
 export default layout;

@@ -53,13 +53,14 @@ const Header = ({
               href={to}
               className="p-1 md:p-2 rounded-lg hover:bg-[#22272f] transition-colors"
               title="Leaderboard"
+              key={to}
             >
               {icon}
             </Link>
           ))}
-          <button className="px-4 hidden md:block py-2 rounded-xl border border-[#272c34] bg-[#15181e] text-[#e7ebef] font-mono text-sm hover:bg-secondary transition-colors">
+          <div className="px-4 hidden md:block py-2 rounded-xl border border-[#272c34] bg-[#15181e] text-[#e7ebef] font-mono text-sm hover:bg-secondary transition-colors">
             <SignOutButton>Sign Out</SignOutButton>
-          </button>
+          </div>
           <button className="px-1 md:hidden block p-1 rounded-lg hover:bg-[#22272f] transition-colors">
             <SignOutButton>
               <LogOut className="w-5 h-5 text-[#707d8f]" />

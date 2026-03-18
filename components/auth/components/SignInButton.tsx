@@ -12,7 +12,11 @@ const SignInButton = () => {
           Sign In
         </Link>
       </div>
-      <Link className="block md:hidden w-5 h-5 text-[#707d8f]" href="/signIn">
+      <Link
+        className="block md:hidden w-5 h-5 text-[#707d8f]"
+        href="/signIn"
+        aria-label="Sign in"
+      >
         <LogIn />
       </Link>
     </div>
