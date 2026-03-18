@@ -25,7 +25,7 @@ const StartPracticingButton = () => {
           backgroundColor: "#28a764",
         },
       }}
-      onClick={() => router.push("/select-tech")}
+      onClick={() => router.push("/technologies")}
     >
       Start Practicing <ChevronRight />
     </Button>

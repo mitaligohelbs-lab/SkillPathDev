@@ -11,7 +11,7 @@ const Review = () => {
       <div className="py-20">
         {allQuestion.map((question, idx) => (
           <div className="py-2 w-full">
-            <ReviewBox question={question} questionNumber={idx + 1} />
+            <ReviewBox question={question} questionNumber={idx + 1} key={idx} />
           </div>
         ))}
       </div>

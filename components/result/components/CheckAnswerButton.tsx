@@ -17,13 +17,17 @@ const CheckAnswerButton = ({
   currQuestionNumber,
 }: chckAnswerProps) => {
   const router = useRouter();
-  const { level, technology, topic } = useParams();
+  const { level, technology, topic } = useParams() as {
+    technology: string;
+    topic: string;
+    level: string;
+  };
   const dispatch = useAppDispatch();
   const handleNext = () => {
     dispatch(
       isSubmitted({
         isCorrect,
-        level,
+        level: level.split("")[1],
         topic,
         technology,
       }),

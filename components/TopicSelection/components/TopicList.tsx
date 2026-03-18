@@ -10,7 +10,7 @@ import { JS_TOPICS } from "@/constant";
 const TopicList = () => {
   const router = useRouter();
 
-  const { technology } = useParams();
+  const { technology } = useParams() as { technology: string };
 
   return (
     <Grid
@@ -26,7 +26,7 @@ const TopicList = () => {
           <Card
             id={id}
             handleCardClick={() => {
-              router.push(`/level/${technology}/${id}`);
+              router.push(`/${technology?.split("-")?.[0]}/${id}-mcq`);
             }}
             borderColor="#272c34"
           >

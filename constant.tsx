@@ -27,7 +27,7 @@ export const ALL_FEATURE = [
 
 export const TECHNOLOGIES = [
   {
-    id: "javaScript",
+    id: "javascript",
     name: "JavaScript",
     icon: "⚡",
     enabled: true,

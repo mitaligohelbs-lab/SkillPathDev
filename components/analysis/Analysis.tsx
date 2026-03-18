@@ -23,6 +23,10 @@ const Analysis = () => {
   const [allAnalysisData, setAllAnalysisData] = useState<any>(null);
   const [selectedTech, setSelectedTech] = useState("");
 
+  const formattedTechnology = TECHNOLOGIES.find(
+    ({ id }) => id === selectedTech,
+  )?.name;
+
   const avgScore = allAnalysisData?.length
     ? +(
         allAnalysisData?.reduce((acc: any, curr: any) => acc + +curr.score, 0) /
@@ -63,7 +67,7 @@ const Analysis = () => {
         .from("user_attempts")
         .select("*")
         .eq("user_id", userId)
-        .eq("technology", selectedTech);
+        .eq("technology", formattedTechnology);
 
       setAllAnalysisData(data ?? []);
 
@@ -74,10 +78,10 @@ const Analysis = () => {
   };
 
   useEffect(() => {
-    if (selectedTech) {
+    if (formattedTechnology) {
       fetchAllData();
     }
-  }, [selectedTech]);
+  }, [formattedTechnology]);
 
   const ALL_ANALYSIS_DATA = [
     {
@@ -209,7 +213,7 @@ const Analysis = () => {
           ))}
         </Select>
       </FormControl>
-      {selectedTech ? (
+      {formattedTechnology ? (
         allAnalysisData?.length || topics?.length ? (
           <div className="space-y-3 py-12">
             <OverallAnalysis data={ALL_ANALYSIS_DATA} />
@@ -224,7 +228,7 @@ const Analysis = () => {
             </p>
             <button
               className="px-6 py-3  bg-[#31c47f] rounded-xl text-[#272c34] font-bold"
-              onClick={() => router.push("/select-tech")}
+              onClick={() => router.push("/technologies")}
             >
               Start Quiz
             </button>

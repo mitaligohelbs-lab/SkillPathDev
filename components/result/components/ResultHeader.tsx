@@ -36,8 +36,6 @@ const ResultHeader = () => {
         <FeatureCard
           title="SCORE"
           desc={`${correct}/10`}
-          bgColor="bg-[#31c47f0d]"
-          textColor="text-[#31C47F]"
           descriptionFont="text-xl font-bold"
         />
         <FeatureCard

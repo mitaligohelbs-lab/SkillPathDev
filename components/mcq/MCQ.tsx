@@ -7,7 +7,7 @@ import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { persistor } from "@/lib/store";
 import { addQuestions } from "@/lib/features/CurrentUserLevelWiseAnanlysis";
-import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+import { addCurrentTechStack } from "@/lib/features/CurrentSelectedTachSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { reset } from "@/lib/features/QuizSlice";
 
@@ -21,7 +21,7 @@ const MCQ = () => {
     technology: paramTechnology,
     topic: paramTopic,
     level: paramLevel,
-  } = useParams();
+  } = useParams() as { technology: string; topic: string; level: string };
   const dispatch = useAppDispatch();
   const { technology, topic, level } = useAppSelector(
     (state) => state.technology,
@@ -31,9 +31,10 @@ const MCQ = () => {
   const [currQuestionNumber, setCurrentQuestionNumber] = useState<number>(1);
 
   const currTechnologyName =
-    TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
+    TECHNOLOGIES.find(({ id }) => id === paramTechnology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
+  const currTopicName =
+    JS_TOPICS.find(({ id }) => id === paramTopic)?.name || topic;
 
   const currentQuestion = allQuestionData.find(
     (_, idx) => idx + 1 === currQuestionNumber,
@@ -46,7 +47,7 @@ const MCQ = () => {
         .select("*")
         .eq("technology", currTechnologyName)
         .eq("topic", currTopicName)
-        .eq("level", `Level ${level}`);
+        .eq("level", `Level ${level || paramLevel.split("-")[1]}`);
 
       const shuffled = data?.sort(() => 0.5 - Math.random());
       const questions = shuffled?.slice(0, 10);
@@ -79,9 +80,9 @@ const MCQ = () => {
   const handleSetAndRemoveDataInRedux = async () => {
     if (!technology && !topic && paramTechnology && paramTopic && paramLevel) {
       dispatch(
-        addTechSrack({
+        addCurrentTechStack({
           technology: paramTechnology,
-          level: +paramLevel,
+          level: +paramLevel?.split("-")[1],
           topic: paramTopic,
         }),
       );

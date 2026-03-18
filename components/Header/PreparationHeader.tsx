@@ -6,11 +6,15 @@ import Header from "./Header";
 
 const PreparationHeader = () => {
   const quizData = useAppSelector((state) => state.quiz);
-  const { technology, topic, level } = useParams();
+  const { technology, topic, level } = useParams() as {
+    level: string;
+    technology: string;
+    topic: string;
+  };
   return (
     <div className="flex justify-between border-b px-2 md:px-6 py-4 items-center gap-3 border-[#272c3480]">
       <Header
-        text={`MCQ Round | ${technology} | ${topic} | Level ${level}`}
+        text={`MCQ Round | ${technology} | ${topic} | Level ${level.split("-")[1]}`}
         className="hidden md:flex"
       />
       <Header text="MCQ Round" className="block md:hidden" />
