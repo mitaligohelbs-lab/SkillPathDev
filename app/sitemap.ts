@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = "https://skillpathdev.vercel.app";
   const technologies = ["javascript", "react", "nextjs"];
 
   const topics: Record<string, string[]> = {
