@@ -10,7 +10,7 @@ import { Box, Grid, Stack } from "@mui/material";
 import { supabase } from "@/lib/supabase";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
-import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+import { addCurrentTechStack } from "@/lib/features/CurrentSelectedTachSlice";
 
 import { JS_TOPICS, LEVELS, TECHNOLOGIES } from "@/constant";
 
@@ -19,14 +19,14 @@ import GetCertificateButton from "@/components/certificate/GetCertificateButton"
 
 const LevelList = () => {
   const dispatch = useAppDispatch();
-  const params = useParams();
+  const { technology, topic } = useParams() as {
+    technology: string;
+    topic: string;
+  };
   const { userId } = useCurrentUser();
   const [isDisplayCertificate, setIsDisplayCertificate] = useState(false);
 
   const [currUserData, setCurrentUserData] = useState<any>(null);
-
-  const technology = params.technology as string;
-  const topic = params.topic as string;
 
   const currTechnologyName =
     TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
@@ -116,12 +116,16 @@ const LevelList = () => {
           return (
             <Link
               key={level}
-              href={level ? `/mcq/${technology}/${topic}/${level}` : "#"}
+              href={
+                level
+                  ? `/mcq/${technology}/${topic?.split("-")[0]}/level-${level}`
+                  : "#"
+              }
               className={level ? "group w-full" : "pointer-events-none w-full"}
               onClick={() => {
                 if (unlock) {
                   dispatch(
-                    addTechSrack({
+                    addCurrentTechStack({
                       technology,
                       topic,
                       level,

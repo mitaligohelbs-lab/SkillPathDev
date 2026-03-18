@@ -119,6 +119,7 @@ const MCQDisplay = ({
               mode="attempt"
               selectedOption={selectOption ?? undefined}
               onSelect={setSelectOption}
+              submitted={submitted}
             />
           ))}
       </Box>

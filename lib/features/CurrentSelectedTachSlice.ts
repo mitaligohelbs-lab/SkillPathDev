@@ -8,7 +8,7 @@ export const currentTechStack = createSlice({
     level: 1,
   },
   reducers: {
-    addTechSrack: (state, action) => {
+    addCurrentTechStack: (state, action) => {
       state.technology = action.payload.technology;
       state.topic = action.payload.topic;
       state.level = action.payload.level;
@@ -16,5 +16,5 @@ export const currentTechStack = createSlice({
   },
 });
 
-export const { addTechSrack } = currentTechStack.actions;
+export const { addCurrentTechStack } = currentTechStack.actions;
 export default currentTechStack.reducer;

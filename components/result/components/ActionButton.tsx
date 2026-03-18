@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { persistor } from "@/lib/store";
 import { useAppDispatch, useAppSelector } from "@/lib/hook";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
-import { addTechSrack } from "@/lib/features/CurrentSelectedTachSlice";
+import { addCurrentTechStack } from "@/lib/features/CurrentSelectedTachSlice";
 import { saveProgress } from "@/lib/features/progressSlice";
 import { reset } from "@/lib/features/QuizSlice";
 
@@ -22,11 +22,12 @@ const ActionButton = () => {
   const { technology, topic, level } = useAppSelector(
     (state) => state.technology,
   );
+  const finalTopic = topic.split("-")[0];
 
   const nextLevel = (level ?? 1) + 1;
 
   const handleMoveNextLevel = async () => {
-    router.push(`/mcq/${technology}/${topic}/${nextLevel}`);
+    router.push(`/mcq/${technology}/${topic}/level-${nextLevel}`);
     dispatch(
       saveProgress({
         technology,
@@ -37,7 +38,7 @@ const ActionButton = () => {
       }),
     );
     dispatch(
-      addTechSrack({
+      addCurrentTechStack({
         technology,
         topic,
         level: nextLevel,
@@ -62,7 +63,7 @@ const ActionButton = () => {
         handleClick={async () => {
           await persistor.purge();
           dispatch(reset());
-          router.push(`/mcq/${technology}/${topic}/${level || 1}`);
+          router.push(`/mcq/${technology}/${finalTopic}/level-${level || 1}`);
         }}
       />
       {correct >= 7 && level !== 3 && (
@@ -84,7 +85,7 @@ const ActionButton = () => {
         icon={"➡️"}
         bgColor={level === 3 ? "#31c47f" : ""}
         text="Next Topic"
-        handleClick={() => router.push(`/topic/${technology}`)}
+        handleClick={() => router.push(`${technology}-mcq`)}
       />
     </div>
   );

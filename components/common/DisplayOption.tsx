@@ -12,6 +12,7 @@ const DisplayOption = ({
   isInfoColor,
   selectedOption,
   onSelect,
+  submitted,
 }: DisplayOptionProps) => {
   const isCorrect = option && option === correctAnswer;
   const isUserSelected = option && option === userAnswer;
@@ -20,7 +21,7 @@ const DisplayOption = ({
 
   return (
     <button
-      disabled={mode !== "attempt"}
+      disabled={mode !== "attempt" || submitted}
       onClick={() => option && onSelect?.(option)}
       className={clsx(
         "w-full p-4 rounded-xl border text-left text-sm transition",

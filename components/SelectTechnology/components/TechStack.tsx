@@ -19,7 +19,7 @@ const TechStack = () => {
       {TECHNOLOGIES.map(({ name, icon, enabled, id }) => (
         <Link
           key={id}
-          href={enabled ? `/topic/${id}` : "#"}
+          href={enabled ? `/${id}-mcq` : "#"}
           className={enabled ? "group w-full" : "pointer-events-none w-full"}
         >
           <Card disabled={!enabled} id={id}>

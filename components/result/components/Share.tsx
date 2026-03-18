@@ -26,7 +26,7 @@ const Share = ({
             baseBtn,
             isDisabled
               ? "opacity-50 cursor-not-allowed border border-gray-300 text-gray-400"
-              : "border border-[#31c47f]/30 bg-[#31c47f]/5 text-[#31c47f] hover:bg-[#31c47f]/10",
+              : "border border-[#707d8f]",
           )}
           onClick={() => setIsOpenShareModal(true)}
           disabled={isDisabled}
@@ -41,7 +41,7 @@ const Share = ({
             baseBtn,
             isDisabled
               ? "opacity-50 cursor-not-allowed border border-gray-300 text-gray-400"
-              : "border border-[#31c47f]/30 text-[#31c47f] hover:bg-[#31c47f]/10",
+              : "border border-[#707d8f]",
           )}
           onClick={() => setIsOpenChallengeModal(true)}
           disabled={isDisabled}

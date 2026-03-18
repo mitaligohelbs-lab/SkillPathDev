@@ -40,6 +40,7 @@ export type DisplayOptionProps = {
   selectedOption?: string;
   onSelect?: (option: string) => void;
   isInfoColor?: string;
+  submitted?: boolean;
 };
 
 export type chckAnswerProps = {
