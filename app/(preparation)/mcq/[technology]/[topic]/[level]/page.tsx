@@ -3,7 +3,6 @@ import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 
 export async function generateMetadata({ params }: any) {
   const resolvedParams = await params;
-
   const { technology, topic, level } = resolvedParams;
 
   const techName = TECHNOLOGIES.find(({ id }) => id === technology)?.name;
