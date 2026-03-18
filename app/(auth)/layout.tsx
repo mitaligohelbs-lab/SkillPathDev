@@ -4,5 +4,5 @@ const layout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) => ({ children });
+}>) => <div>{children}</div>;
 export default layout;
