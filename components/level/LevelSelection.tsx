@@ -3,7 +3,7 @@ import Layout from "../common/Layout";
 import LevelList from "./components/LevelList";
 
 const LevelSelection = () => (
-  <Layout isCard>
+  <Layout isCard className="pt-20 px-4">
     <Header />
     <LevelList />
   </Layout>
