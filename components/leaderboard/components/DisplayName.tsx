@@ -33,7 +33,7 @@ const DisplayName = ({
 
   return (
     <div
-      className={`${isDisplay ? "mt-2  md:mt-6" : "mt-0"} max-w-2xl w-full ${isDisplay ? "px-1 md:px-5" : "px-0"} ${!isDisplay ? "bg-[#22272f] border border-[#272b35] px-2 md:px-6 py-2 md:py-8 rounded-xl" : ""}`}
+      className={`${isDisplay ? "mt-2  md:mt-6" : "mt-0"} max-w-2xl w-full ${isDisplay ? "md:px-5" : "px-0"} ${!isDisplay ? "bg-[#22272f] border border-[#272b35] px-2 md:px-6 py-2 md:py-8 rounded-xl" : ""}`}
     >
       {isDisplay && displatTechnology && displayTopic && selectedLevel && (
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -67,7 +67,7 @@ const DisplayName = ({
           <Trophy className="w-12 h-12 text-muted-foreground mx-auto" />
           <p className="text-muted-foreground font-mono">
             {select?.technology === "" || select?.topic === ""
-              ? "Select technology and topic"
+              ? "Select topic"
               : "No scores yet. Be the first!"}
           </p>
         </div>

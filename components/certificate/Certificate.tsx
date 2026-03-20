@@ -95,171 +95,198 @@ export default function Certificate() {
           <p className="text-[#707d8f]">Download and share your achievement</p>
         </div>
 
-        <div className="overflow-hidden rounded-2xl border border-[#31c47f]/30">
+        <div
+          style={{
+            width: "100%",
+            maxWidth: "1000px",
+            margin: "0 auto",
+          }}
+        >
           <div
             ref={certRef}
-            className="relative w-full"
             style={{
               aspectRatio: "297 / 210",
-              background:
-                "linear-gradient(135deg, #0d1117 0%, #101820 30%, #0d1117 60%, #131a24 100%)",
-              padding: "40px",
+              overflow: "hidden",
+              borderRadius: "16px",
+              border: "1px solid rgba(49,196,127,0.3)",
             }}
           >
             <div
-              className="absolute inset-4 rounded-lg"
+              ref={certRef}
               style={{
-                border: "2px solid hsl(152 60% 48% / 0.4)",
-                boxShadow: "inset 0 0 30px hsl(152 60% 48% / 0.05)",
+                position: "relative",
+                width: "100%",
+                aspectRatio: "297 / 210",
+                background: "#0d1117",
+                padding: "clamp(12px, 3vw, 40px)",
               }}
-            />
-            <div
-              className="absolute inset-5 rounded-lg"
-              style={{ border: "1px solid hsl(152 60% 48% / 0.15)" }}
-            />
-
-            <div
-              className="relative h-full flex flex-col items-center justify-between text-center"
-              style={{ padding: "24px 40px" }}
             >
-              <div className="space-y-1">
-                <p
-                  style={{
-                    fontFamily: "JetBrains Mono, monospace",
-                    fontSize: "11px",
-                    color: "hsl(152 60% 48%)",
-                    letterSpacing: "4px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  SkillPathDev
-                </p>
-                <h2
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "28px",
-                    fontWeight: 700,
-                    color: "#e8edf3",
-                  }}
-                >
-                  Certificate of Completion
-                </h2>
-              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: "clamp(8px, 1.5vw, 16px)",
+                  borderRadius: "10px",
+                  border: "2px solid rgba(49,196,127,0.4)",
+                  boxShadow: "inset 0 0 30px rgba(49,196,127,0.05)",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  inset: "clamp(12px, 2vw, 20px)",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(49,196,127,0.15)",
+                }}
+              />
 
-              <div className="space-y-4 w-full">
-                <p
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  textAlign: "center",
+                  padding: "clamp(10px, 2vw, 24px) clamp(12px, 4vw, 40px)",
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "JetBrains Mono, monospace",
+                      fontSize: "clamp(8px, 1vw, 11px)",
+                      color: "#31c47f",
+                      letterSpacing: "clamp(2px, 0.5vw, 4px)",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    SkillPathDev
+                  </p>
+                  <h2
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "clamp(16px, 3vw, 28px)",
+                      fontWeight: 700,
+                      color: "#e8edf3",
+                    }}
+                  >
+                    Certificate of Completion
+                  </h2>
+                </div>
+
+                <div
                   style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "13px",
-                    color: "#8b95a5",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "clamp(6px, 1.5vw, 16px)",
                   }}
                 >
-                  This is to certify that
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "26px",
-                    fontWeight: 700,
-                    color: "hsl(152 60% 48%)",
-                    borderBottom: "2px solid hsl(152 60% 48% / 0.3)",
-                    paddingBottom: "8px",
-                    display: "inline-block",
-                  }}
-                >
-                  {fullName}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: "13px",
-                    color: "#8b95a5",
-                  }}
-                >
-                  has successfully completed all three levels of
-                </p>
-                <div className="flex items-center justify-center gap-3">
+                  <p
+                    style={{
+                      fontSize: "clamp(10px, 1.5vw, 13px)",
+                      color: "#8b95a5",
+                    }}
+                  >
+                    This is to certify that
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "clamp(16px, 3vw, 26px)",
+                      fontWeight: 700,
+                      color: "#31c47f",
+                      borderBottom: "2px solid rgba(49,196,127,0.3)",
+                      display: "inline-block",
+                      paddingBottom: "clamp(4px, 1vw, 8px)",
+                    }}
+                  >
+                    {fullName}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "Inter, sans-serif",
+                      fontSize: "clamp(10px, 1.5vw, 13px)",
+                      color: "#8b95a5",
+                    }}
+                  >
+                    has successfully completed all three levels of
+                  </p>
                   <span
                     style={{
-                      fontSize: "22px",
+                      fontSize: "clamp(14px, 2.5vw, 22px)",
                       fontWeight: 700,
                       color: "#e8edf3",
                     }}
                   >
                     {topic}
                   </span>
+                  <p
+                    style={{
+                      fontFamily: "JetBrains Mono, monospace",
+                      fontSize: "clamp(10px, 1.5vw, 14px)",
+                      color: "rgba(49,196,127,0.8)",
+                    }}
+                  >
+                    Score: {totalScored}/30 (
+                    {Math.round((totalScored / 30) * 100)}%)
+                  </p>
                 </div>
-                <p
+
+                <div
                   style={{
-                    fontFamily: "JetBrains Mono, monospace",
-                    fontSize: "14px",
-                    color: "hsl(152 60% 48% / 0.8)",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "flex-end",
+                    fontSize: "clamp(8px, 1.2vw, 11px)",
                   }}
                 >
-                  Score: {totalScored}/{30} (
-                  {Math.round((totalScored / 30) * 100)}% accuracy)
-                </p>
-              </div>
-
-              <div className="flex items-end justify-between w-full">
-                <div style={{ textAlign: "left" }}>
-                  <p
+                  <div style={{ textAlign: "left" }}>
+                    <p style={{ color: "#8b95a5" }}>{dateStr}</p>
+                    <p
+                      style={{
+                        fontFamily: "JetBrains Mono, monospace",
+                        color: "#5a6370",
+                        fontSize: "clamp(7px, 1vw, 10px)",
+                      }}
+                    >
+                      Date of Completion
+                    </p>
+                  </div>
+                  <div
                     style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "11px",
-                      color: "#8b95a5",
-                    }}
-                  >
-                    {dateStr}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "10px",
+                      textAlign: "center",
                       color: "#5a6370",
-                    }}
-                  >
-                    Date of Completion
-                  </p>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <p
-                    style={{
                       fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "10px",
-                      color: "#5a6370",
                     }}
                   >
                     skillpathdev.com
-                  </p>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <p
-                    style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "11px",
-                      color: "hsl(152 60% 48%)",
-                      fontWeight: 600,
-                    }}
-                  >
-                    🏅 Verified
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "JetBrains Mono, monospace",
-                      fontSize: "10px",
-                      color: "#5a6370",
-                    }}
-                  >
-                    SkillPathDev
-                  </p>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <p
+                      style={{
+                        color: "#31c47f",
+                        fontWeight: 600,
+                        fontFamily: "JetBrains Mono, monospace",
+                      }}
+                    >
+                      🏅 Verified
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "JetBrains Mono, monospace",
+                        fontSize: "clamp(7px, 1vw, 10px)",
+                        color: "#5a6370",
+                      }}
+                    >
+                      SkillPathDev
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-5">
           <button
             onClick={handleDownload}
             disabled={downloading}
@@ -271,7 +298,7 @@ export default function Certificate() {
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {levelWiseData.map(({ level, score }: any) => {
             const names = ["Basics", "Intermediate", "Advanced"];
             return (

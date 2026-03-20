@@ -27,7 +27,7 @@ const CheckAnswerButton = ({
     dispatch(
       isSubmitted({
         isCorrect,
-        level: level.split("")[1],
+        level: level.split("-")[1],
         topic,
         technology,
       }),

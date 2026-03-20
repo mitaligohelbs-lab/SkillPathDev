@@ -7,6 +7,8 @@ import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 
 import SearchBar from "./components/SearchBar";
 import DisplayName from "./components/DisplayName";
+import LeaderboardDescription from "./components/LeaderboardDescription";
+import { FolderX } from "lucide-react";
 
 const LeaderBoard = ({ isDisplay = true }) => {
   const { userId, fullName } = useCurrentUser();
@@ -49,7 +51,7 @@ const LeaderBoard = ({ isDisplay = true }) => {
 
   return (
     <div
-      className={`${isDisplay ? "pt-30" : "pt-5"} flex flex-col justify-center items-center gap-4 px-5 md:px-0`}
+      className={`${isDisplay ? "pt-30" : "pt-5"} max-w-2xl mx-auto flex flex-col justify-center items-center gap-4 pb-5  md:px-0 px-6`}
     >
       {isDisplay && (
         <SearchBar
@@ -60,14 +62,26 @@ const LeaderBoard = ({ isDisplay = true }) => {
           selectedLevel={selectedLevel}
         />
       )}
-      {select?.technology.toLowerCase() === "javascript" && (
-        <DisplayName
-          data={leaderBoardData}
-          select={select}
-          selectedLevel={selectedLevel}
-          currentUserrank={findCurrUserIndex + 1}
-          isDisplay={isDisplay}
-        />
+      {select?.technology.toLowerCase() === "javascript" ? (
+        <>
+          <DisplayName
+            data={leaderBoardData}
+            select={select}
+            selectedLevel={selectedLevel}
+            currentUserrank={findCurrUserIndex + 1}
+            isDisplay={isDisplay}
+          />
+          <LeaderboardDescription
+            technology={select?.technology}
+            topic={select?.topic}
+            level={selectedLevel}
+          />
+        </>
+      ) : (
+        <div className="text-center py-12 space-y-2">
+          <FolderX className="w-12 h-12 text-[#272c34] mx-auto" />
+          <p className="text-[#9aa4b2] font-mono">Select technology</p>
+        </div>
       )}
     </div>
   );

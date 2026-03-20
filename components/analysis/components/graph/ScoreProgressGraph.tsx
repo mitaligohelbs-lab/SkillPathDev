@@ -17,8 +17,8 @@ const ScoreProgressGraph = ({ data }: any) => {
   }));
 
   return (
-    <div className="bg-[#15181e] p-4 rounded-xl border border-[#272c34]">
-      <h3 className="text-[#e7ebef] mb-4 font-semibold">Score Progress</h3>
+    <div className="bg-[#15181e] p-4 w-full rounded-xl border border-[#272c34]">
+      <h3 className="text-[#e7ebef] font-semibold">Score Progress</h3>
       <ResponsiveContainer width="100%" height={250}>
         <LineChart data={chartData}>
           <CartesianGrid stroke="#272c34" />

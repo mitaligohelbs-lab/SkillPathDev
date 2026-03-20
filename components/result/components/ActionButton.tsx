@@ -49,12 +49,11 @@ const ActionButton = () => {
   };
 
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
       <CommonActionButton
         icon={<Eye />}
         text="Review Answer"
         textColor="#31c47f"
-        bgColor="#31c47f0d"
         handleClick={() => router.push("/review")}
       />
       <CommonActionButton
@@ -70,17 +69,20 @@ const ActionButton = () => {
         <CommonActionButton
           icon={<ArrowRight />}
           text="Next Level"
+          textColor="#000000"
           bgColor="#31c47f"
           handleClick={handleMoveNextLevel}
         />
       )}
-      {userId && (
-        <CommonActionButton
-          icon={<BarChart3 />}
-          text=" View Leaderboard"
-          handleClick={() => router.push("/leaderboard")}
-        />
-      )}
+      <div className="md:col-span-2 ">
+        {userId && (
+          <CommonActionButton
+            icon={<BarChart3 />}
+            text=" View Leaderboard"
+            handleClick={() => router.push("/leaderboard")}
+          />
+        )}
+      </div>
       <CommonActionButton
         icon={"➡️"}
         bgColor={level === 3 ? "#31c47f" : ""}

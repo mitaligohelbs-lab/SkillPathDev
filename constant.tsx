@@ -138,3 +138,16 @@ export const HEADER_LINKS = [
     to: "/leaderboard",
   },
 ];
+
+export const RESULT_FOOTER_CONTENT = [
+  {
+    title: "Your Interview Preparation Program",
+    description:
+      "A structured MCQ-based program to help you prepare for frontend interviews by practicing topic-wise questions. Track your progress, improve accuracy, and build confidence with real interview scenarios.",
+  },
+  {
+    title: " Improve Your Frontend Interview Skills",
+    description:
+      "Practice MCQ questions, focus on weak areas, and improve your problem-solving skills step by step. Learn from detailed explanations and strengthen your interview preparation.",
+  },
+];

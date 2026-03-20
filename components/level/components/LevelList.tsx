@@ -23,6 +23,12 @@ const LevelList = () => {
     technology: string;
     topic: string;
   };
+
+  const navigationTopic = topic
+    .split("-")
+    ?.filter((el) => el !== "mcq")
+    ?.join("-");
+
   const { userId } = useCurrentUser();
   const [isDisplayCertificate, setIsDisplayCertificate] = useState(false);
 
@@ -31,7 +37,8 @@ const LevelList = () => {
   const currTechnologyName =
     TECHNOLOGIES.find(({ id }) => id === technology)?.name || technology;
 
-  const currTopicName = JS_TOPICS.find(({ id }) => id === topic)?.name || topic;
+  const currTopicName =
+    JS_TOPICS.find(({ id }) => id === navigationTopic)?.name || navigationTopic;
 
   const checkUser = async () => {
     const { data: existingUser, error } = await supabase
@@ -39,7 +46,7 @@ const LevelList = () => {
       .select("*")
       .eq("user_id", userId)
       .eq("technology", currTechnologyName)
-      .eq("topic", currTopicName || topic);
+      .eq("topic", currTopicName);
 
     setCurrentUserData(existingUser);
 
@@ -108,8 +115,9 @@ const LevelList = () => {
       justifyContent={"center"}
       alignItems={"center"}
       spacing={2}
-      padding={{ xs: 2, sm: 0 }}
-      className="overflow-auto w-full"
+      paddingX={{ xs: 2, sm: 0 }}
+      paddingBottom={{ xs: 5, sm: 0 }}
+      className="overflow-auto w-full mt-0"
     >
       {levelWithProgress.map(
         ({ level, name, description, unlock, levelWiseScore }) => {
@@ -118,7 +126,7 @@ const LevelList = () => {
               key={level}
               href={
                 level
-                  ? `/mcq/${technology}/${topic?.split("-")[0]}/level-${level}`
+                  ? `/mcq/${technology}/${navigationTopic}/level-${level}`
                   : "#"
               }
               className={level ? "group w-full" : "pointer-events-none w-full"}
@@ -127,7 +135,7 @@ const LevelList = () => {
                   dispatch(
                     addCurrentTechStack({
                       technology,
-                      topic,
+                      navigationTopic,
                       level,
                     }),
                   );
