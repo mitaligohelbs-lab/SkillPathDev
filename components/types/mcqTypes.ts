@@ -57,4 +57,7 @@ export type bookmarkProps = {
   created_at: string;
   id: number;
   question_id: number;
+  level: string;
+  technology: string;
+  topic: string;
 };

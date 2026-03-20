@@ -116,7 +116,7 @@ const Result = () => {
   }, [technology, topic, userId, correct, level]);
 
   return (
-    <Layout className="px-5 md:px-0">
+    <Layout className="px-10 md:px-0">
       <div className="w-full space-y-3 pt-20 pb-2">
         <ResultHeader />
         {userId && (

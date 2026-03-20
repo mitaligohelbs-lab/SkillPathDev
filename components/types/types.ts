@@ -73,3 +73,11 @@ export type searchBarTypes = {
   selectedLevel: number;
   isBookMarkQuestion?: boolean;
 };
+
+export type BookmarkCardTypes = {
+  questionId: number;
+  handleBookmarkClick: (id: number) => {};
+  level: string;
+  technology: string;
+  topic: string;
+};

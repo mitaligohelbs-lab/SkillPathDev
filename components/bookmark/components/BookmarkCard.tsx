@@ -8,14 +8,15 @@ import { supabase } from "@/lib/supabase";
 
 import DisplayOption from "@/components/common/DisplayOption";
 import { MCQList } from "@/components/types/mcqTypes";
+import { BookmarkCardTypes } from "@/components/types/types";
 
 const BookmarkCard = ({
   questionId,
   handleBookmarkClick,
-}: {
-  questionId: number;
-  handleBookmarkClick: (id: number) => {};
-}) => {
+  level,
+  technology,
+  topic,
+}: BookmarkCardTypes) => {
   const [questionInfo, setQuestionInfo] = useState<MCQList>();
   const fetchAllData = async () => {
     try {
@@ -32,15 +33,14 @@ const BookmarkCard = ({
   }, [questionId]);
 
   return (
-    <div className="flex flex-col gap-2 space-y-2 mx-auto max-w-2xl  px-4 md:px-20 flex-wrap">
+    <div className="flex flex-col w-full gap-2 space-y-2 mx-auto flex-wrap">
       <div className="p-2 md:p-5 border border-[#272c34] bg-[#15181e] rounded-xl">
         <div className="text-[#707d8f] text-sm">
-          {questionInfo?.technology} . {questionInfo?.topic}.{" "}
-          {questionInfo?.level}
+          {technology} . {topic}. {level}
         </div>
         <div className="flex justify-between items-center py-1">
           <pre
-            className="rounded-xl text-xs sm:text-sm md:text-base 
+            className="rounded-xl text-sm md:text-base 
       whitespace-pre-wrap wrap-break-word
       overflow-x-auto text-white text-start"
           >

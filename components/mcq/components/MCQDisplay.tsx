@@ -32,7 +32,10 @@ const MCQDisplay = ({
       const { data } = await supabase
         .from("bookmarked_questions")
         .select("*")
-        .eq("user_id", userId);
+        .eq("user_id", userId)
+        .eq("level", question.level)
+        .eq("technology", question.technology)
+        .eq("topic", question.topic);
       setIsAllBookmarkedData(data ?? []);
     } catch (error) {
       console.log(error);
@@ -82,6 +85,9 @@ const MCQDisplay = ({
       await supabase.from("bookmarked_questions").insert({
         question_id: question.id,
         user_id: userId,
+        level: question.level,
+        technology: question.technology,
+        topic: question.topic,
       });
     }
     await fetchAllBookmarkedQuestionId();
