@@ -67,7 +67,7 @@ const DisplayName = ({
           <Trophy className="w-12 h-12 text-muted-foreground mx-auto" />
           <p className="text-muted-foreground font-mono">
             {select?.technology === "" || select?.topic === ""
-              ? "Select technology and topic"
+              ? "Select topic"
               : "No scores yet. Be the first!"}
           </p>
         </div>

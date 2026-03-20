@@ -90,14 +90,14 @@ const MCQDisplay = ({
   return (
     <Stack px={{ xs: 3, md: 0 }} py={{ xs: 4, md: 0 }}>
       <Typography variant="h5">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full items-start">
           <pre className="p-2 md:p-6 rounded-xl w-full text-sm md:text-base whitespace-pre-wrap wrap-break-words">
             {`${currQuestionNumber} ${question.question}`}
           </pre>
           {userId && (
             <button
               onClick={() => toggleBookMark()}
-              className="shrink-0 p-2 rounded-lg hover:bg-secondary transition-colors"
+              className="shrink-0 p-2 md:p-6 rounded-lg hover:bg-secondary transition-colors"
               title={isIdExist ? "Remove bookmark" : "Bookmark question"}
             >
               {isIdExist ? (

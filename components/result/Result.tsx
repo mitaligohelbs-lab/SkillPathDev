@@ -9,6 +9,7 @@ import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import ActionButton from "./components/ActionButton";
 import ResultHeader from "./components/ResultHeader";
 import Share from "./components/Share";
+import ResultFooter from "./components/ResultFooter";
 import LeaderBoard from "../leaderboard/LeaderBoard";
 
 import Layout from "../common/Layout";
@@ -93,7 +94,7 @@ const Result = () => {
     try {
       await supabase.from("user_attempts").insert({
         user_id: userId,
-        technology: technology,
+        technology: currTechnologyName,
         topic: topic,
         level: level,
         score: correct,
@@ -116,7 +117,7 @@ const Result = () => {
 
   return (
     <Layout className="px-5 md:px-0">
-      <div className="w-full space-y-3 pt-20 pb-10">
+      <div className="w-full space-y-3 pt-20 pb-2">
         <ResultHeader />
         {userId && (
           <>
@@ -138,6 +139,7 @@ const Result = () => {
           />
         )}
       </div>
+      <ResultFooter />
     </Layout>
   );
 };

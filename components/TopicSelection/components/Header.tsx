@@ -6,15 +6,14 @@ import { TECHNOLOGIES } from "@/constant";
 
 const Header = () => {
   const { technology } = useParams() as { technology: string };
-
   const formattedTechnologyName = TECHNOLOGIES.find(
     ({ id }) => id === technology?.split("-")[0],
   )?.name;
 
   return (
     <CommonHeader
-      title={`Choose a ${formattedTechnologyName} Topic`}
-      description={`Select a ${technology} concept to practice`}
+      title={`${formattedTechnologyName} MCQ Questions by Topic`}
+      description={`Practice ${formattedTechnologyName} MCQ questions by topic. These multiple-choice questions with answers and explanations help you prepare for interviews and test your knowledge.`}
     />
   );
 };

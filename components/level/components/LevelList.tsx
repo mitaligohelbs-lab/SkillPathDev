@@ -23,6 +23,12 @@ const LevelList = () => {
     technology: string;
     topic: string;
   };
+
+  const navigationTopic = topic
+    .split("-")
+    ?.filter((el) => el !== "mcq")
+    ?.join("-");
+
   const { userId } = useCurrentUser();
   const [isDisplayCertificate, setIsDisplayCertificate] = useState(false);
 
@@ -118,7 +124,7 @@ const LevelList = () => {
               key={level}
               href={
                 level
-                  ? `/mcq/${technology}/${topic?.split("-")[0]}/level-${level}`
+                  ? `/mcq/${technology}/${navigationTopic}/level-${level}`
                   : "#"
               }
               className={level ? "group w-full" : "pointer-events-none w-full"}

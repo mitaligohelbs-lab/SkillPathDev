@@ -4,11 +4,19 @@ import { CheckCircle2, Trophy, XCircle } from "lucide-react";
 import { useAppSelector } from "@/lib/hook";
 import LoginPromptCard from "./LoginPromptCard";
 import FeatureCard from "@/components/common/FeatureCard";
+import { JS_TOPICS, TECHNOLOGIES } from "@/constant";
 
 const ResultHeader = () => {
-  const { topic, level, correct } = useAppSelector((state) => state.quiz);
+  const { technology, topic, level, correct } = useAppSelector(
+    (state) => state.quiz,
+  );
   const accuracy = Math.round((correct / 10) * 100);
   const passed = correct >= 7;
+
+  const displayTechnology = TECHNOLOGIES.find(
+    ({ id }) => id === technology,
+  )?.name;
+  const displayTopic = JS_TOPICS?.find(({ id }) => id === topic)?.name;
 
   return (
     <div className="space-y-3">
@@ -27,7 +35,7 @@ const ResultHeader = () => {
         </h1>
         {(topic || level) && (
           <p className="text-[#707D8F] text-center">
-            {topic} · Level {level}
+            {displayTechnology} {displayTopic} MCQ Result
           </p>
         )}
       </div>

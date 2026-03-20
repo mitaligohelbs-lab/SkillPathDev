@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 export type CardTypes = {
   children?: React.ReactNode;
@@ -56,3 +56,20 @@ export type InputTypes = {
   error?: string;
 };
 
+export type LeaderBoardDescriptionTypes = {
+  technology: string;
+  topic: string;
+  level: number;
+};
+
+export type searchBarTypes = {
+  setLeaderBoardData: Dispatch<SetStateAction<any>>;
+  select: {
+    technology: string;
+    topic: string;
+  };
+  setSelect: Dispatch<SetStateAction<any>>;
+  setSelectedLevel: Dispatch<SetStateAction<number>>;
+  selectedLevel: number;
+  isBookMarkQuestion?: boolean;
+};

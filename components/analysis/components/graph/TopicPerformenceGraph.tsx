@@ -18,7 +18,7 @@ const TopicPerformanceGraph = ({ data }: any) => {
   }));
 
   return (
-    <div className="bg-[#15181e] p-4 rounded-xl border border-[#272c34]">
+    <div className="bg-[#15181e] p-4 w-full rounded-xl border border-[#272c34]">
       <h3 className="text-[#e7ebef] mb-4 font-semibold">Topic Performance</h3>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart data={chartData}>
