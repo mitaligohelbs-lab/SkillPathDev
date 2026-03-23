@@ -1,9 +1,15 @@
 import LevelSelection from "@/components/level/LevelSelection";
 
-export const metadata = {
-  title: "Choose a Level – Practice Coding MCQs | SkillDev",
-  description:
-    "Select a difficulty level for your coding practice. Start with Basic, Intermediate, or Hard MCQs and improve your programming skills with SkillDev.",
+export const generateMetadata = async ({ params }: any) => {
+  const resolveParams = await params;
+  const { technology, topic } = resolveParams;
+  return {
+    title: "Choose a Level – Practice Coding MCQs | SkillDev",
+    description: "Select a difficulty level for your coding practice.",
+    alternates: {
+      canonical: `https://skillpathdev.vercel.app/${technology}/${topic}`,
+    },
+  };
 };
 
 const page = () => <LevelSelection />;

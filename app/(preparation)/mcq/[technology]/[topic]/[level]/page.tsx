@@ -17,6 +17,9 @@ export async function generateMetadata({ params }: any) {
   return {
     title: `${techName} ${topicName} MCQs (${levelName}) – Practice Questions | SkillDev`,
     description: `Practice ${techName} ${topicName} MCQs at ${levelName} level. Test your knowledge, improve your coding skills, and prepare for interviews with SkillDev.`,
+    alternates: {
+      canonical: `https://skillpathdev.vercel.app/${technology}/${topic}/${level}`,
+    },
   };
 }
 
