@@ -7,6 +7,22 @@ export const metadata = {
   alternates: {
     canonical: `https://skillpathdev.vercel.app/`,
   },
+  openGraph: {
+    title: "SkillPathDev – Practice Coding MCQs & Crack Tech Interviews",
+    description:
+      "Master JavaScript, React & more with topic-wise MCQs. Track progress, analyze performance, and prepare for real developer interviews on SkillPathDev.",
+    url: "https://skillpathdev.vercel.app/",
+    siteName: "SkillPathDev",
+    images: [
+      {
+        url: "https://skillpathdev.vercel.app/landing.png",
+        width: 1200,
+        height: 630,
+        alt: "SkillPathDev Coding Practice Platform",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function Home() {
