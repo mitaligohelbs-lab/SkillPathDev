@@ -5,6 +5,7 @@ import Header from "@/components/Header/Header";
 import StoreProvider from "./StoreProvider";
 import { ToastProvider } from "./ToastProvider";
 import { ClerkProvider } from "@clerk/nextjs";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,6 +25,17 @@ export default function RootLayout({
       publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
     >
       <html lang="en">
+        <head>
+          <script src="https://www.googletagmanager.com/gtag/js?id=G-ZF1L5RZKWJ" />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZF1L5RZKWJ');
+          `}
+          </Script>
+        </head>
         <body className="min-h-screen flex flex-col">
           <header className="fixed left-0 right-0 top-0 bg-[#101319] z-10 flex justify-between border-b px-3 md:px-6 py-4 items-center gap-3 border-[#272c3480]">
             <Header text="SkillPath" subText="Dev" isDisplay={false} />
