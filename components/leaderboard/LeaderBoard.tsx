@@ -75,6 +75,7 @@ const LeaderBoard = ({ isDisplay = true }) => {
             technology={select?.technology}
             topic={select?.topic}
             level={selectedLevel}
+            correct={correct}
           />
         </>
       ) : (

@@ -3,12 +3,11 @@ import Link from "next/link";
 import { Code2 } from "lucide-react";
 import { Stack } from "@mui/material";
 
-import Layout from "../common/Layout";
 import AuthForm from "./components/SignInForm";
 
 const Auth = ({ isLogin = false }) => {
   return (
-    <Layout>
+    <div className="mt-20 max-w-5xl">
       <Stack className="w-full items-center text-center space-y-3">
         <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex justify-center items-center bg-[#31c47f]">
           <Code2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-black" />
@@ -38,7 +37,7 @@ const Auth = ({ isLogin = false }) => {
           )}
         </div>
       </Stack>
-    </Layout>
+    </div>
   );
 };
 

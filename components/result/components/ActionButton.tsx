@@ -49,7 +49,9 @@ const ActionButton = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+    <div
+      className={`grid grid-cols-1 md:${correct >= 7 ? "grid-cols-3" : "grid-cols-2"} gap-4 pt-4`}
+    >
       <CommonActionButton
         icon={<Eye />}
         text="Review Answer"
@@ -57,7 +59,7 @@ const ActionButton = () => {
         handleClick={() => router.push("/review")}
       />
       <CommonActionButton
-        icon={<RotateCcw />}
+      icon={<RotateCcw />}
         text="Retry"
         handleClick={async () => {
           await persistor.purge();

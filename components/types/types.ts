@@ -60,6 +60,7 @@ export type LeaderBoardDescriptionTypes = {
   technology: string;
   topic: string;
   level: number;
+  correct?: number;
 };
 
 export type searchBarTypes = {
