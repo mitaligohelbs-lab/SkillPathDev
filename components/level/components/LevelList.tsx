@@ -135,7 +135,7 @@ const LevelList = () => {
                   dispatch(
                     addCurrentTechStack({
                       technology,
-                      navigationTopic,
+                      topic: navigationTopic,
                       level,
                     }),
                   );

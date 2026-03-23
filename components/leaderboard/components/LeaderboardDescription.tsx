@@ -6,6 +6,7 @@ const LeaderboardDescription = ({
   technology,
   topic,
   level,
+  correct = 0,
 }: LeaderBoardDescriptionTypes) => {
   const displayTechnology = TECHNOLOGIES.find(
     ({ id }) => id === technology,
@@ -38,29 +39,55 @@ const LeaderboardDescription = ({
         <p className="text-blue-500">
           {level === 1 ? (
             <ul className="list-disc">
-              <li>
-                <Link href={`mcq/${technology}/${topic}/level-2`}>
+              <li
+                className={
+                  level === 1 && correct < 7
+                    ? "text-gray-600 pointer-events-none"
+                    : "text-blue-500"
+                }
+              >
+                <Link
+                  href={`mcq/${technology}/${topic}/level-2`}
+                  aria-disabled={level === 1 && +correct <= 7}
+                >
                   Continue with Level 2 {displayTechnology} {displayTopic}
-                  MCQs{" "}
+                  MCQs
+                </Link>
+              </li>
+              <li
+                className={
+                  (level === 1 && correct < 7) || (+level === 2 && correct < 7)
+                    ? "text-gray-600 pointer-events-none"
+                    : "text-blue-500"
+                }
+              >
+                <Link
+                  href={`mcq/${technology}/${topic}/level-3`}
+                  aria-disabled={
+                    (level === 1 && correct < 7) ||
+                    (+level === 2 && correct < 7)
+                  }
+                >
+                  Try Advanced Level 3 Questions
                 </Link>
               </li>
               <li>
-                <Link href={`mcq/${technology}/${topic}/level-3`}>
-                  Try Advanced Level 3 Questions{" "}
-                </Link>
-              </li>
-              <li>
-                {" "}
                 <Link href={`${technology}-mcq`}>
                   Explore other {displayTechnology} interview topics
-                </Link>{" "}
+                </Link>
               </li>
             </ul>
           ) : level === 2 ? (
             <ul className="list-disc">
-              <li>
+              <li
+                className={
+                  (+level === 1 && correct < 7) || (+level === 2 && correct < 7)
+                    ? "text-gray-600 pointer-events-none"
+                    : "text-blue-500"
+                }
+              >
                 <Link href={`mcq/${technology}/${topic}/level-3`}>
-                  Try Advanced Level 3 Questions{" "}
+                  Try Advanced Level 3 Questions
                 </Link>
               </li>
               <li>
