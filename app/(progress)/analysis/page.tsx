@@ -8,6 +8,9 @@ export const metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: "https://skillpathdev.vercel.app/analysis",
+  },
 };
 
 const page = () => <Analysis />;
