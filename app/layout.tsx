@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   verification: {
     google: "1fyKzbkEU1c_SAmHxDUgnnZVvJNskNb7ZBBlNTNNLhU",
   },
+  openGraph: {
+    images: ["landing.png"],
+  },
 };
 
 export default function RootLayout({

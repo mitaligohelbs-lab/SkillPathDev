@@ -10,6 +10,9 @@ export const metadata = {
     description: "Master JavaScript, React & more with topic-wise MCQs.",
     url: "/",
     siteName: "SkillPathDev",
+    openGraph: {
+      images: ["landing.png"],
+    },
     images: [
       {
         url: "/landing.png",
