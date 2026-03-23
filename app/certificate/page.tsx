@@ -19,7 +19,7 @@ export const metadata = {
     description:
       "I just earned my coding certificate on SkillDev! Check it out and start your journey.",
     url: "https://skillpathdev.vercel.app/certificate",
-    siteName: "SkillDev",
+    siteName: "SkillPathDev",
     images: [
       {
         url: "https://skillpathdev.vercel.app/og-certificate.png",
