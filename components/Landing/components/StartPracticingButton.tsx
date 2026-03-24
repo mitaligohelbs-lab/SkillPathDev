@@ -1,34 +1,14 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { Button } from "@mui/material";
 
 const StartPracticingButton = () => {
-  const router = useRouter();
   return (
-    <Button
-      variant="contained"
-      sx={{
-        backgroundColor: "#31C47A",
-        color: "#0C0E12",
-        px: "32px",
-        py: "16px",
-        boxShadow: "0 0 20px rgba(49, 196, 122, 0.3)",
-        borderRadius: "8px",
-        display: "flex",
-        alignItems: "center",
-        fontWeight: "bold",
-        fontSize: "16px",
-        gap: "8px",
-        "&:hover": {
-          backgroundColor: "#28a764",
-        },
-      }}
-      onClick={() => router.push("/technologies")}
+    <Link
+      href="/technologies"
+      className="bg-[#31C47A] text-[#0C0E12] px-8 py-4 rounded-lg font-bold flex items-center gap-2 w-fit"
     >
       Start Practicing <ChevronRight />
-    </Button>
+    </Link>
   );
 };
 
