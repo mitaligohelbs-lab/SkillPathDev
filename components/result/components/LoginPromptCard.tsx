@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { LOGIN_PROMPT } from "@/constant";
-import Link from "next/link";
 
 const LoginPromptCard = () => {
   const { userId } = useCurrentUser();

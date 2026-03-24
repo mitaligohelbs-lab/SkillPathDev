@@ -1,5 +1,5 @@
-import { BarChart3 } from "lucide-react";
 import Link from "next/link";
+import { BarChart3 } from "lucide-react";
 
 const MiniLeaderBoard = () => {
   return (
