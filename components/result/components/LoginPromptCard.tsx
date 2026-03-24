@@ -1,12 +1,9 @@
-"use client";
-
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { LOGIN_PROMPT } from "@/constant";
 
 const LoginPromptCard = () => {
   const { userId } = useCurrentUser();
-  const router = useRouter();
   return (
     <div>
       {!userId && (
@@ -21,12 +18,12 @@ const LoginPromptCard = () => {
               </li>
             ))}
           </ul>
-          <button
-            onClick={() => router.push("/signIn")}
+          <Link
+            href={"/signIn"}
             className="w-full cursor-pointer flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#e7ebef] text-[#0c0e12] font-mono font-semibold hover:opacity-90 transition-opacity"
           >
             Sign In / Sign Up →
-          </button>
+          </Link>
         </div>
       )}
     </div>

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { FolderX, Target, TrendingUp } from "lucide-react";
@@ -250,12 +251,12 @@ const Analysis = () => {
             <p className="text-[#9aa4b2] font-mono">
               No data found. Ready to start the quiz?
             </p>
-            <button
+            <Link
+              href={"/technologies"}
               className="px-6 py-3  bg-[#31c47f] rounded-xl text-[#272c34] font-bold"
-              onClick={() => router.push("/technologies")}
             >
               Start Quiz
-            </button>
+            </Link>
           </div>
         )
       ) : (
