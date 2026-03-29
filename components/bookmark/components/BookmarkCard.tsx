@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Trash2 } from "lucide-react";
+import { Grid } from "@mui/material";
 
 import { supabase } from "@/lib/supabase";
 
@@ -33,8 +34,11 @@ const BookmarkCard = ({
   }, [questionId]);
 
   return (
-    <div className="flex flex-col w-full gap-2 space-y-2 mx-auto flex-wrap">
-      <div className="p-2 md:p-5 border border-[#272c34] bg-[#15181e] rounded-xl">
+    <Grid className="w-full gap-2 space-y-3 mx-auto flex-wrap">
+      <div
+        className="h-auto md:h-40 p-2 overflow-auto md:p-5 border border-[#272c34] bg-[#15181e] rounded-xl"
+        style={{ scrollbarWidth: "none" }}
+      >
         <div className="text-[#707d8f] text-sm">
           {technology} . {topic}. {level}
         </div>
@@ -59,7 +63,7 @@ const BookmarkCard = ({
           isInfoColor="bg-[#31C47F0D] border-[#31c47f33] text-white"
         />
       </div>
-    </div>
+    </Grid>
   );
 };
 
