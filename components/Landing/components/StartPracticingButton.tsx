@@ -5,7 +5,7 @@ const StartPracticingButton = () => {
   return (
     <Link
       href="/technologies"
-      className="bg-[#31C47A] text-[#0C0E12] px-8 py-4 rounded-lg font-bold flex items-center gap-2 w-fit"
+      className="bg-[#31C47A] uppercase text-[#0C0E12] px-8 py-4 rounded-lg font-bold flex items-center gap-2 w-fit"
     >
       Start Practicing <ChevronRight />
     </Link>

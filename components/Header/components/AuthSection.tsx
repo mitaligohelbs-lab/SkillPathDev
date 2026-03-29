@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { LogOut } from "lucide-react";
-import { SignInButton, SignOutButton } from "@clerk/nextjs";
+import { SignOutButton } from "@clerk/nextjs";
 
 import { useCurrentUser } from "@/lib/hooks/useCurrentUser";
 import { HEADER_LINKS } from "@/constant";
+import SignInButton from "@/components/auth/components/SignInButton";
 
 const AuthSection = () => {
   const { userId } = useCurrentUser();

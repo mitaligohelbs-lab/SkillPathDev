@@ -74,7 +74,7 @@ const BookMark = () => {
   };
 
   return (
-    <>
+    <div className="overflow-auto pb-20">
       <div className="pt-30 px-6 md:px-0">
         <Grid className="w-full flex flex-col md:flex-row max-w-2xl pb-10 mx-auto gap-3">
           <FormControl
@@ -229,7 +229,7 @@ const BookMark = () => {
       {select?.technology ? (
         <>
           {allBookmarkedData?.length ? (
-            <div className="flex px-6 md:px-0 flex-col md:flex-row gap-3 w-full max-w-5xl mx-auto ">
+            <Grid className="grid px-6 grid-cols-1 mx-auto md:grid-cols-3 gap-3">
               {allBookmarkedData.map(
                 ({ question_id, level, technology, topic }) => (
                   <BookmarkCard
@@ -242,7 +242,7 @@ const BookMark = () => {
                   />
                 ),
               )}
-            </div>
+            </Grid>
           ) : (
             <div className="text-center py-12 space-y-2  px-6 md:px-0 ">
               <FolderX className="w-12 h-12 text-[#272c34] mx-auto" />
@@ -259,7 +259,7 @@ const BookMark = () => {
           <p className="text-[#9aa4b2] font-mono">Select technology</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
